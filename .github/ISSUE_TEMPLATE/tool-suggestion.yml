@@ -1,0 +1,46 @@
+name: Suggest a tool
+description: Suggest a new AI tool or related project for the catalog
+title: "Add: "
+labels: []
+body:
+  - type: input
+    id: name
+    attributes:
+      label: Project name
+      placeholder: Project name
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: Official URL or repository
+      description: Include a source we can verify.
+      placeholder: https://github.com/owner/repo
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: What does it do?
+      description: A concise, factual explanation (not marketing copy).
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - Agents & Automation
+        - Developer Tools
+        - Data & Documents
+        - Web & Monitoring
+        - Media & Creative
+        - Learning & Research
+        - Finance
+        - 3D & Interactive
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Additional context or limitations (optional)

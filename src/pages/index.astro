@@ -1,0 +1,120 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+const tools = (await getCollection('tools')).sort((a, b) => a.data.name.localeCompare(b.data.name));
+const categories = [...new Set(tools.map((tool) => tool.data.category))].sort();
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : import.meta.env.BASE_URL + '/';
+const categorySymbols = {
+  'Agents & Automation': '◈',
+  'Developer Tools': '⌘',
+  'Data & Documents': '▤',
+  'Web & Monitoring': '◎',
+  'Media & Creative': '✳',
+  'Learning & Research': '◇',
+  'Finance': '⌁',
+  '3D & Interactive': '⬡',
+};
+---
+<BaseLayout title="AI Tools Catalog — Useful tools, openly collected" description="A free, searchable directory of AI tools and related open-source projects. Community-maintained, without rankings or sponsored placements.">
+  <section class="hero container">
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="hero-copy">
+      <span class="eyebrow"><span class="signal-dot"></span> AN OPEN, COMMUNITY-MAINTAINED DIRECTORY</span>
+      <h1>Good tools deserve <span class="gradient-text">to be found.</span></h1>
+      <p class="hero-description">A growing collection of AI tools, developer utilities, and projects worth knowing about. Clear descriptions. Useful links. No rankings or hype.</p>
+      <div class="hero-actions">
+        <a class="primary-button" href="#directory">Explore the catalog <span aria-hidden="true">↘</span></a>
+        <a class="secondary-button" href={base + 'contribute/'}>Suggest a tool <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+    <div class="hero-stats" aria-label="Catalog statistics">
+      <div><strong>{tools.length}</strong><span>collected tools</span></div>
+      <div class="stat-separator"></div>
+      <div><strong>{categories.length}</strong><span>categories</span></div>
+      <div class="stat-separator"></div>
+      <div><strong>100%</strong><span>public & open</span></div>
+    </div>
+  </section>
+
+  <section class="catalog-section container" id="directory" aria-label="Tool directory">
+    <div class="section-heading">
+      <div><div class="overline">THE DIRECTORY</div><h2>Explore the collection</h2><p>Browse by category or search by name, description, or tag.</p></div>
+      <a href={base + 'contribute/'} class="text-action">Missing something? Contribute <span aria-hidden="true">↗</span></a>
+    </div>
+
+    <div class="filter-panel">
+      <label class="search-box" for="tool-search">
+        <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.8" cy="10.8" r="7.2"/><path d="m16.3 16.3 4.5 4.5"/></svg>
+        <input id="tool-search" type="search" placeholder="Search tools, use cases, tags..." autocomplete="off"/>
+        <span class="search-hint">⌕</span>
+      </label>
+      <div class="category-filters" role="group" aria-label="Filter by category">
+        <button class="filter-chip active" type="button" data-filter="all" aria-pressed="true">All tools <span>{tools.length}</span></button>
+        {categories.map((category) => (
+          <button class="filter-chip" type="button" data-filter={category} aria-pressed="false">{category}</button>
+        ))}
+      </div>
+    </div>
+
+    <div class="directory-meta">
+      <p id="results-count" aria-live="polite">Showing {tools.length} tools</p>
+      <span>Alphabetical · No paid placements</span>
+    </div>
+
+    <div class="tools-grid" id="tools-grid">
+      {tools.map((tool) => (
+        <article class="tool-card" data-category={tool.data.category} data-search={[tool.data.name,tool.data.summary,tool.data.category,...tool.data.tags].join(' ').toLowerCase()}>
+          <div class="card-top">
+            <div class="tool-icon" aria-hidden="true">{categorySymbols[tool.data.category]}</div>
+            <span class="card-category">{tool.data.category}</span>
+            <a class="card-external" href={tool.data.url} target="_blank" rel="noopener noreferrer" aria-label={'Visit ' + tool.data.name + ' official link'}>↗</a>
+          </div>
+          <a class="tool-name" href={base + 'tools/' + tool.id + '/'}>{tool.data.name}</a>
+          <p class="tool-summary">{tool.data.summary}</p>
+          <div class="card-bottom"><div class="tag-list">{tool.data.tags.slice(0, 3).map((tag) => <span class="tag">{tag}</span>)}</div><a class="card-more" href={base + 'tools/' + tool.id + '/'} aria-label={'Read details about ' + tool.data.name}>Details →</a></div>
+        </article>
+      ))}
+    </div>
+    <div class="empty-state" id="empty-state" hidden><div class="empty-symbol">⌕</div><h3>No tools found</h3><p>Try different search terms or choose another category.</p><button id="reset-filters" class="secondary-button" type="button">Clear filters</button></div>
+  </section>
+
+  <section class="contribution-banner container">
+    <div><span class="overline">OPEN SOURCE, OPEN TO IDEAS</span><h2>Found something useful?</h2><p>Share it with the community. Suggest a tool, correct a description, or improve the website through GitHub.</p></div>
+    <a class="primary-button" href={base + 'contribute/'}>How to contribute <span aria-hidden="true">↗</span></a>
+  </section>
+
+  <script>
+    const searchInput = document.querySelector<HTMLInputElement>('#tool-search');
+    const cards = [...document.querySelectorAll<HTMLElement>('.tool-card')];
+    const filterButtons = [...document.querySelectorAll<HTMLButtonElement>('.filter-chip')];
+    const count = document.querySelector<HTMLElement>('#results-count');
+    const empty = document.querySelector<HTMLElement>('#empty-state');
+    const reset = document.querySelector<HTMLButtonElement>('#reset-filters');
+    let selectedCategory = 'all';
+    function applyFilters() {
+      const query = (searchInput?.value || '').trim().toLowerCase();
+      let visible = 0;
+      for (const card of cards) {
+        const matchesCategory = selectedCategory === 'all' || card.dataset.category === selectedCategory;
+        const matchesText = !query || (card.dataset.search || '').includes(query);
+        const matches = matchesCategory && matchesText;
+        card.hidden = !matches;
+        if (matches) visible++;
+      }
+      if (count) count.textContent = 'Showing ' + visible + ' of ' + cards.length + ' tools';
+      if (empty) empty.hidden = visible !== 0;
+    }
+    function setCategory(category: string) {
+      selectedCategory = category;
+      for (const button of filterButtons) {
+        const active = button.dataset.filter === category;
+        button.classList.toggle('active', active);
+        button.setAttribute('aria-pressed', String(active));
+      }
+      applyFilters();
+    }
+    searchInput?.addEventListener('input', applyFilters);
+    filterButtons.forEach((button) => button.addEventListener('click', () => setCategory(button.dataset.filter || 'all')));
+    reset?.addEventListener('click', () => { if (searchInput) searchInput.value = ''; setCategory('all'); searchInput?.focus(); });
+  </script>
+</BaseLayout>

@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : import.meta.env.BASE_URL + '/';
+---
+<BaseLayout title="Contribute — AI Tools Catalog" description="Help improve the community-maintained AI Tools Catalog by suggesting tools or proposing corrections on GitHub.">
+  <section class="contribute-page container">
+    <nav class="breadcrumbs"><a href={base}>Directory</a><span>/</span><span>Contribute</span></nav>
+    <span class="eyebrow"><span class="signal-dot"></span> BUILT BY THE COMMUNITY</span>
+    <h1>Let's keep the list <span class="gradient-text">useful.</span></h1>
+    <p class="lead">Know a tool that belongs here? Spot an outdated URL or an inaccurate description? Contributions are welcome. You don't need to write code to help.</p>
+    <div class="contribute-grid">
+      <article class="contribute-card"><span class="contribute-number">01</span><h2>Suggest a tool</h2><p>Open a GitHub Issue with the official URL, a short description, and what it does. We'll verify it before publishing.</p><a class="primary-button" href="https://github.com/jbqneto/ai-tools-catalog/issues/new?template=tool-suggestion.yml" target="_blank" rel="noopener noreferrer">Suggest a tool ↗</a></article>
+      <article class="contribute-card"><span class="contribute-number">02</span><h2>Correct a listing</h2><p>Broken link? Incorrect feature description? Submit a correction so readers can find reliable information.</p><a class="secondary-button" href="https://github.com/jbqneto/ai-tools-catalog/issues/new?template=correction.yml" target="_blank" rel="noopener noreferrer">Report a correction ↗</a></article>
+      <article class="contribute-card"><span class="contribute-number">03</span><h2>Make a Pull Request</h2><p>Catalog entries are Markdown files. Add one, edit an existing listing, or improve the website. All changes are reviewed before merging.</p><a class="secondary-button" href="https://github.com/jbqneto/ai-tools-catalog/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Read guidelines ↗</a></article>
+    </div>
+    <section class="guidelines"><h2>What belongs here?</h2><p>Useful AI-related software, developer utilities, creative tools, educational projects, and relevant open-source libraries. We focus on accurate descriptions and working links, not popularity, scores, or affiliate promotions.</p><p>Include an official source where possible, avoid exaggerated claims, and clearly distinguish features documented by the project from your own impressions.</p></section>
+  </section>
+</BaseLayout>

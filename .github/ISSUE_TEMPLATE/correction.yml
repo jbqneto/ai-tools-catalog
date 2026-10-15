@@ -1,0 +1,21 @@
+name: Correct a listing
+description: Report inaccurate or outdated catalog information
+title: "Correction: "
+body:
+  - type: input
+    id: tool
+    attributes:
+      label: Tool name or catalog URL
+    validations:
+      required: true
+  - type: textarea
+    id: error
+    attributes:
+      label: What needs correction?
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Supporting official source (optional)
+      placeholder: https://
