@@ -18,13 +18,26 @@ const categorySymbols = {
 <BaseLayout title="AI Tools Catalog — Useful tools, openly collected" description="A free, searchable directory of AI tools and related open-source projects. Community-maintained, without rankings or sponsored placements.">
   <section class="hero container">
     <div class="hero-glow" aria-hidden="true"></div>
-    <div class="hero-copy">
+    <div class="hero-layout">
+      <div class="hero-copy">
       <span class="eyebrow"><span class="signal-dot"></span> AN OPEN, COMMUNITY-MAINTAINED DIRECTORY</span>
       <h1>Good tools deserve <span class="gradient-text">to be found.</span></h1>
       <p class="hero-description">A growing collection of AI tools, developer utilities, and projects worth knowing about. Clear descriptions. Useful links. No rankings or hype.</p>
       <div class="hero-actions">
         <a class="primary-button" href="#directory">Explore the catalog <span aria-hidden="true">↘</span></a>
         <a class="secondary-button" href={base + 'contribute/'}>Suggest a tool <span aria-hidden="true">↗</span></a>
+      </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="art-grid"></div>
+        <div class="art-orbit art-orbit-outer"></div>
+        <div class="art-orbit art-orbit-inner"></div>
+        <div class="art-core"><span class="art-core-mark">✳</span><span>EXPLORE THE POSSIBILITIES</span></div>
+        <div class="art-node art-node-one"><span>◈</span> Agents & automation</div>
+        <div class="art-node art-node-two"><span>⌘</span> Developer tools</div>
+        <div class="art-node art-node-three"><span>▤</span> Data & documents</div>
+        <div class="art-node art-node-four"><span>✳</span> Media & creative</div>
+        <span class="art-star art-star-one">✧</span><span class="art-star art-star-two">✧</span>
       </div>
     </div>
     <div class="hero-stats" aria-label="Catalog statistics">
@@ -43,15 +56,18 @@ const categorySymbols = {
     </div>
 
     <div class="filter-panel">
-      <label class="search-box" for="tool-search">
+      <div class="search-box">
         <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.8" cy="10.8" r="7.2"/><path d="m16.3 16.3 4.5 4.5"/></svg>
-        <input id="tool-search" type="search" placeholder="Search tools, use cases, tags..." autocomplete="off"/>
-        <span class="search-hint">⌕</span>
-      </label>
+        <label class="sr-only" for="tool-search">Search the catalog</label>
+        <input id="tool-search" type="search" placeholder="Search tools, use cases, tags..." autocomplete="off" aria-controls="tools-grid" aria-describedby="search-help"/>
+        <button id="clear-search" class="clear-search" type="button" aria-label="Clear search" hidden>×</button>
+        <kbd class="search-hint" aria-hidden="true">/</kbd>
+      </div>
+      <p class="sr-only" id="search-help">Press slash to search, or Escape to clear the search.</p>
       <div class="category-filters" role="group" aria-label="Filter by category">
-        <button class="filter-chip active" type="button" data-filter="all" aria-pressed="true">All tools <span>{tools.length}</span></button>
+        <button class="filter-chip active" type="button" data-filter="all" aria-controls="tools-grid" aria-pressed="true">All tools <span>{tools.length}</span></button>
         {categories.map((category) => (
-          <button class="filter-chip" type="button" data-filter={category} aria-pressed="false">{category}</button>
+          <button class="filter-chip" type="button" data-filter={category} aria-controls="tools-grid" aria-pressed="false">{category} <span>{tools.filter((tool) => tool.data.category === category).length}</span></button>
         ))}
       </div>
     </div>
@@ -69,7 +85,7 @@ const categorySymbols = {
             <span class="card-category">{tool.data.category}</span>
             <a class="card-external" href={tool.data.url} target="_blank" rel="noopener noreferrer" aria-label={'Visit ' + tool.data.name + ' official link'}>↗</a>
           </div>
-          <a class="tool-name" href={base + 'tools/' + tool.id + '/'}>{tool.data.name}</a>
+          <a class="tool-name" style={'view-transition-name: tool-' + tool.id} href={base + 'tools/' + tool.id + '/'}>{tool.data.name}</a>
           <p class="tool-summary">{tool.data.summary}</p>
           <div class="card-bottom"><div class="tag-list">{tool.data.tags.slice(0, 3).map((tag) => <span class="tag">{tag}</span>)}</div><a class="card-more" href={base + 'tools/' + tool.id + '/'} aria-label={'Read details about ' + tool.data.name}>Details →</a></div>
         </article>
@@ -90,31 +106,111 @@ const categorySymbols = {
     const count = document.querySelector<HTMLElement>('#results-count');
     const empty = document.querySelector<HTMLElement>('#empty-state');
     const reset = document.querySelector<HTMLButtonElement>('#reset-filters');
+    const clear = document.querySelector<HTMLButtonElement>('#clear-search');
+    const grid = document.querySelector<HTMLElement>('#tools-grid');
+    const normalize = (value: string) =>
+      value.normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+    const searchableCards = cards.map((card) => ({
+      element: card,
+      text: normalize(card.dataset.search || ''),
+    }));
     let selectedCategory = 'all';
+
+    function updateUrl(mode: 'push' | 'replace') {
+      const url = new URL(window.location.href);
+      const query = searchInput?.value.trim() || '';
+      if (query) url.searchParams.set('q', query);
+      else url.searchParams.delete('q');
+      if (selectedCategory !== 'all') url.searchParams.set('category', selectedCategory);
+      else url.searchParams.delete('category');
+      if (url.href !== window.location.href) {
+        if (mode === 'push') history.pushState(null, '', url);
+        else history.replaceState(null, '', url);
+      }
+    }
+
     function applyFilters() {
-      const query = (searchInput?.value || '').trim().toLowerCase();
+      const query = normalize((searchInput?.value || '').trim());
       let visible = 0;
-      for (const card of cards) {
-        const matchesCategory = selectedCategory === 'all' || card.dataset.category === selectedCategory;
-        const matchesText = !query || (card.dataset.search || '').includes(query);
-        const matches = matchesCategory && matchesText;
-        card.hidden = !matches;
+      for (const { element, text } of searchableCards) {
+        const matchesCategory = selectedCategory === 'all' || element.dataset.category === selectedCategory;
+        const matches = matchesCategory && (!query || text.includes(query));
+        element.hidden = !matches;
         if (matches) visible++;
       }
       if (count) count.textContent = 'Showing ' + visible + ' of ' + cards.length + ' tools';
       if (empty) empty.hidden = visible !== 0;
+      if (clear) clear.hidden = !searchInput?.value;
     }
-    function setCategory(category: string) {
-      selectedCategory = category;
+
+    function setCategory(category: string, save = true) {
+      const valid = category === 'all' || filterButtons.some((button) => button.dataset.filter === category);
+      const next = valid ? category : 'all';
+      const changed = selectedCategory !== next;
+      selectedCategory = next;
       for (const button of filterButtons) {
-        const active = button.dataset.filter === category;
+        const active = button.dataset.filter === selectedCategory;
         button.classList.toggle('active', active);
         button.setAttribute('aria-pressed', String(active));
       }
       applyFilters();
+      if (save && changed) updateUrl('push');
     }
-    searchInput?.addEventListener('input', applyFilters);
-    filterButtons.forEach((button) => button.addEventListener('click', () => setCategory(button.dataset.filter || 'all')));
-    reset?.addEventListener('click', () => { if (searchInput) searchInput.value = ''; setCategory('all'); searchInput?.focus(); });
+
+    function restoreFromUrl() {
+      const params = new URLSearchParams(window.location.search);
+      if (searchInput) searchInput.value = params.get('q') || '';
+      setCategory(params.get('category') || 'all', false);
+    }
+
+    function clearSearch() {
+      if (!searchInput) return;
+      searchInput.value = '';
+      applyFilters();
+      updateUrl('replace');
+      searchInput.focus();
+    }
+
+    searchInput?.addEventListener('input', () => {
+      applyFilters();
+      updateUrl('replace');
+    });
+    clear?.addEventListener('click', clearSearch);
+    filterButtons.forEach((button) =>
+      button.addEventListener('click', () => setCategory(button.dataset.filter || 'all'))
+    );
+    reset?.addEventListener('click', () => {
+      if (searchInput) searchInput.value = '';
+      setCategory('all');
+      applyFilters();
+      updateUrl('replace');
+      searchInput?.focus();
+    });
+    document.addEventListener('keydown', (event) => {
+      const target = event.target;
+      const editing = target instanceof Element && !!target.closest('input, textarea, select, [contenteditable]');
+      if (event.key === '/' && !editing && !event.altKey && !event.ctrlKey && !event.metaKey) {
+        event.preventDefault();
+        searchInput?.focus();
+      } else if (event.key === 'Escape' && document.activeElement === searchInput) {
+        event.preventDefault();
+        if (searchInput?.value) clearSearch();
+        else searchInput?.blur();
+      }
+    });
+    window.addEventListener('popstate', restoreFromUrl);
+
+    if (grid && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      grid.addEventListener('pointermove', (event) => {
+        if (!(event.target instanceof Element)) return;
+        const card = event.target.closest<HTMLElement>('.tool-card');
+        if (!card) return;
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty('--pointer-x', event.clientX - rect.left + 'px');
+        card.style.setProperty('--pointer-y', event.clientY - rect.top + 'px');
+      });
+    }
+
+    restoreFromUrl();
   </script>
 </BaseLayout>
