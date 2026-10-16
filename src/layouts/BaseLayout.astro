@@ -19,6 +19,9 @@ const canonical = Astro.url.href;
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <title>{title}</title>
+    <style>
+      @media (max-width: 650px) { .nav-desktop { display: none; } }
+    </style>
   </head>
   <body>
     <div class="page-shell">
@@ -28,8 +31,9 @@ const canonical = Astro.url.href;
           <span>AI Tools <strong>Catalog</strong></span>
         </a>
         <nav aria-label="Main navigation" class="header-actions">
-          <a class="nav-link" href={base}>Explore</a>
-          <a class="nav-link" href={base + 'contribute/'}>Contribute</a>
+          <a class="nav-link nav-desktop" href={base}>Explore</a>
+          <a class="nav-link" href={base + 'browser-games/'}>Games</a>
+          <a class="nav-link nav-desktop" href={base + 'contribute/'}>Contribute</a>
           <a class="github-link" href="https://github.com/jbqneto/ai-tools-catalog" target="_blank" rel="noopener noreferrer" aria-label="View on GitHub">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .8A11.2 11.2 0 0 0 .8 12c0 4.95 3.2 9.15 7.65 10.63.56.1.76-.24.76-.54v-2.08c-3.11.68-3.77-1.32-3.77-1.32-.5-1.28-1.24-1.61-1.24-1.61-1.01-.7.08-.68.08-.68 1.12.08 1.71 1.15 1.71 1.15 1 .17 2.16.39 3.27-.41.1-.72.39-1.2.7-1.48-2.48-.28-5.08-1.23-5.08-5.54 0-1.23.44-2.23 1.15-3.02-.11-.28-.5-1.43.11-2.97 0 0 .94-.3 3.08 1.15a10.5 10.5 0 0 1 5.6 0c2.14-1.45 3.08-1.15 3.08-1.15.61 1.54.22 2.69.11 2.97.72.79 1.15 1.79 1.15 3.02 0 4.32-2.6 5.25-5.08 5.53.4.35.75 1.02.75 2.05v3.03c0 .3.2.65.77.54A11.2 11.2 0 0 0 23.2 12 11.2 11.2 0 0 0 12 .8Z"/></svg>
             <span>GitHub</span>
@@ -40,7 +44,7 @@ const canonical = Astro.url.href;
       <footer class="site-footer container">
         <div class="footer-brand"><span class="brand-mini">✳</span> AI Tools Catalog</div>
         <p>Made to be useful. Maintained in the open. No rankings, no sponsored placements.</p>
-        <div class="footer-links"><a href={base}>Explore</a><a href={base + 'contribute/'}>Contribute</a><a href="https://github.com/jbqneto/ai-tools-catalog" target="_blank" rel="noopener noreferrer">Source code ↗</a></div>
+        <div class="footer-links"><a href={base}>Explore</a><a href={base + 'browser-games/'}>Browser games</a><a href={base + 'contribute/'}>Contribute</a><a href="https://github.com/jbqneto/ai-tools-catalog" target="_blank" rel="noopener noreferrer">Source code ↗</a></div>
         <small>Tool names and trademarks belong to their respective owners.</small>
       </footer>
     </div>
