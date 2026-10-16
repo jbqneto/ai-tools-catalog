@@ -15,7 +15,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Install dependencies
+      - name: Recalculate lockfile for Astro version merged from main (diagnostic only)
+        run: npm install --package-lock-only --ignore-scripts --no-audit --no-fund
+      - name: Install resolved dependencies
         run: npm ci --no-audit --no-fund
       - name: Validate Astro build and catalog schema
         run: npm run build
