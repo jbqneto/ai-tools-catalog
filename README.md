@@ -37,6 +37,18 @@ Build the static site with `npm run build`.
 
 The workflow builds the website and publishes `dist/`. Every subsequent push to `main` redeploys automatically.
 
+## Browser games (separate collection)
+
+The site also keeps a small, separate list of [browser game links](https://jbqneto.github.io/ai-tools-catalog/browser-games/). These are **not categorized or counted as AI tools**.
+
+- Source: a community-shared image listing 21 game-related URLs (October 2026).
+- Data: `src/data/browser-games.json`. Page: `src/pages/browser-games.astro`.
+- `landing-reviewed`: destination page or project documentation was inspected; gameplay, security, and licensing are **not** verified.
+- `unverified`: the destination or its behavior could not be independently confirmed.
+- `mismatch`: the current destination's identity differs from the name in the source image.
+- The `ut.pieter.com` project is **Urban Terror**, although the source image called it Unreal Tournament.
+- External fan projects can change, require legitimate game assets, or disappear. No games are hosted by this repository.
+
 ## Add or correct a tool
 
 Please read [CONTRIBUTING.md](CONTRIBUTING.md). You can suggest a tool using a GitHub Issue, or add/edit a Markdown entry via a Pull Request.
