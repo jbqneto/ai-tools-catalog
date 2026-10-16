@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: '22'
       - name: Install dependencies
-        run: npm install --no-audit --no-fund
+        run: npm ci --no-audit --no-fund
       - name: Validate Astro build and catalog schema
         run: npm run build
       - name: Report npm vulnerabilities (diagnostic only)
