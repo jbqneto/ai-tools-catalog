@@ -195,7 +195,7 @@ const categorySymbols = {
       } else if (event.key === 'Escape' && document.activeElement === searchInput) {
         event.preventDefault();
         if (searchInput?.value) clearSearch();
-        else searchInput.blur();
+        else searchInput?.blur();
       }
     });
     window.addEventListener('popstate', restoreFromUrl);
