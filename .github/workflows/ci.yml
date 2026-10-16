@@ -41,3 +41,11 @@ jobs:
           }, null, 2));
           console.log('NPM_AUDIT_DIAGNOSTICS_END');
           NODE
+      - name: Expose generated lockfile for review (diagnostic PR only)
+        run: |
+          node --input-type=module <<'NODE'
+          import { readFileSync } from 'node:fs';
+          const compact = JSON.stringify(JSON.parse(readFileSync('package-lock.json', 'utf8')));
+          for (let i = 0; i < compact.length; i += 2000)
+            console.log('LOCK_CHUNK:' + compact.slice(i, i + 2000));
+          NODE
