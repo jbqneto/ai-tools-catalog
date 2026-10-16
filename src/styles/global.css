@@ -450,7 +450,6 @@ h1,h2,h3{font-family:'Space Grotesk',sans-serif;line-height:1.15;letter-spacing:
   box-shadow: 0 22px 48px rgba(0,0,0,.17);
 }
 .detail-article, .detail-sidebar { box-shadow: 0 15px 38px rgba(0,0,0,.1); }
-.detail-heading h1 { view-transition-name: none; }
 
 @media (max-width: 1020px) {
   .hero-layout { grid-template-columns: 1fr; }
