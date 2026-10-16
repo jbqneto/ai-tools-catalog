@@ -1,0 +1,153 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import games from '../data/browser-games.json';
+
+const base = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : import.meta.env.BASE_URL + '/';
+const genres = [...new Set(games.map((game) => game.genre))].sort();
+const statusLabel: Record<string, string> = {
+  'landing-reviewed': 'Page inspected',
+  unverified: 'Needs review',
+  mismatch: 'Label mismatch',
+};
+---
+<BaseLayout
+  title="Browser Games — AI Tools Catalog"
+  description="A separate collection of 21 browser game projects and links, with source caveats and no rankings."
+>
+  <section class="games-page container">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href={base}>AI tools directory</a><span>/</span><span>Browser games</span>
+    </nav>
+
+    <div class="games-heading">
+      <span class="eyebrow"><span class="signal-dot"></span> AN EXTRA COLLECTION · NOT AI TOOLS</span>
+      <h1>Classic games, <span class="gradient-text">in your browser.</span></h1>
+      <p class="lead">21 community-shared links to browser ports, fan projects, and playable archives. This collection is kept separate from the AI tools directory.</p>
+    </div>
+
+    <div class="review-notice">
+      <strong>Check before you play.</strong>
+      <p>These are third-party destinations, not endorsements or guaranteed working games. “Page inspected” means the landing page or project documentation was reviewed, not that a game session, security, or redistribution rights were verified. Projects may require downloads or legally obtained game assets. Links may change or disappear.</p>
+    </div>
+
+    <div class="filter-panel games-filters">
+      <label class="search-box" for="game-search">
+        <span aria-hidden="true">⌕</span>
+        <input id="game-search" type="search" placeholder="Search games, genres or notes..." autocomplete="off" />
+      </label>
+      <div class="category-filters" role="group" aria-label="Filter by game type">
+        <button type="button" class="filter-chip active" data-game-filter="all" aria-pressed="true">All <span>{games.length}</span></button>
+        {genres.map((genre) => (
+          <button type="button" class="filter-chip" data-game-filter={genre} aria-pressed="false">{genre}</button>
+        ))}
+      </div>
+    </div>
+
+    <div class="directory-meta">
+      <p id="game-count" aria-live="polite">Showing {games.length} of {games.length} links</p>
+      <span>Original shared-list order · No rankings</span>
+    </div>
+
+    <div class="tools-grid">
+      {games.map((game) => (
+        <article
+          class="tool-card game-card"
+          data-genre={game.genre}
+          data-search={[game.name, game.genre, game.summary, game.note, game.url].join(' ').toLowerCase()}
+        >
+          <div class="card-top">
+            <span class="tool-icon" aria-hidden="true">◈</span>
+            <span class="card-category">{game.genre}</span>
+            <span class:list={['game-status', game.status]}>{statusLabel[game.status]}</span>
+          </div>
+          <h2 class="tool-name game-title">{game.name}</h2>
+          <p class="tool-summary">{game.summary}</p>
+          <p class="game-note">{game.note}</p>
+          <div class="card-bottom">
+            <span class="game-domain">{new URL(game.url).hostname}</span>
+            <a class="card-more" href={game.url} target="_blank" rel="noopener noreferrer" aria-label={'Open external website for ' + game.name}>Open link ↗</a>
+          </div>
+        </article>
+      ))}
+    </div>
+    <div class="empty-state" id="no-games" hidden>
+      <div class="empty-symbol" aria-hidden="true">⌕</div>
+      <h2>No matching games</h2>
+      <p>Try another search or category.</p>
+      <button class="secondary-button" id="clear-game-filters" type="button">Clear filters</button>
+    </div>
+
+    <p class="games-footer-note">Found a broken or mislabeled link?
+      <a href="https://github.com/jbqneto/ai-tools-catalog/issues/new?template=correction.yml" target="_blank" rel="noopener noreferrer">Submit a correction ↗</a>
+    </p>
+  </section>
+
+  <script>
+    const input = document.querySelector<HTMLInputElement>('#game-search');
+    const cards = [...document.querySelectorAll<HTMLElement>('.game-card')];
+    const buttons = [...document.querySelectorAll<HTMLButtonElement>('[data-game-filter]')];
+    const count = document.querySelector<HTMLElement>('#game-count');
+    const empty = document.querySelector<HTMLElement>('#no-games');
+    const clear = document.querySelector<HTMLButtonElement>('#clear-game-filters');
+    let genre = 'all';
+
+    function refresh() {
+      const query = (input?.value || '').trim().toLowerCase();
+      let shown = 0;
+      for (const card of cards) {
+        const visible = (genre === 'all' || card.dataset.genre === genre)
+          && (!query || (card.dataset.search || '').includes(query));
+        card.hidden = !visible;
+        if (visible) shown++;
+      }
+      if (count) count.textContent = 'Showing ' + shown + ' of ' + cards.length + ' links';
+      if (empty) empty.hidden = shown > 0;
+    }
+
+    function setGenre(value: string) {
+      genre = value;
+      for (const button of buttons) {
+        const active = button.dataset.gameFilter === genre;
+        button.classList.toggle('active', active);
+        button.setAttribute('aria-pressed', String(active));
+      }
+      refresh();
+    }
+
+    input?.addEventListener('input', refresh);
+    buttons.forEach((button) => button.addEventListener('click', () => setGenre(button.dataset.gameFilter || 'all')));
+    clear?.addEventListener('click', () => {
+      if (input) input.value = '';
+      setGenre('all');
+      input?.focus();
+    });
+  </script>
+</BaseLayout>
+
+<style>
+  .games-page { padding-top: 54px; padding-bottom: 95px; }
+  .games-heading { margin: 69px 0 34px; max-width: 825px; }
+  .games-heading h1 { font-size: clamp(2.7rem, 6vw, 4.7rem); margin: 17px 0; }
+  .games-heading .lead { margin: 0; }
+  .review-notice { padding: 20px 24px; margin-bottom: 28px; background: #141e2f; border: 1px solid #3b465a; border-radius: 13px; }
+  .review-notice strong { color: #e5e7fa; }
+  .review-notice p { margin: 5px 0 0; font-size: .88rem; line-height: 1.75; color: #acb9cd; }
+  .game-card { min-height: 295px; }
+  .game-title { margin: 0; }
+  .game-note { color: #aab8cb; font-size: .78rem; line-height: 1.6; margin: -2px 0 17px; }
+  .game-status { margin-left: auto; white-space: nowrap; font-size: .67rem; color: #92ddce; }
+  .game-status.unverified { color: #e7c083; }
+  .game-status.mismatch { color: #f4aa92; }
+  .game-domain { color: #8998ae; font-size: .74rem; overflow-wrap: anywhere; }
+  .games-footer-note { color: #a6b4c7; font-size: .9rem; margin-top: 32px; }
+  .games-footer-note a { color: #b1aaff; font-weight: 700; }
+  @media (max-width: 650px) {
+    .games-page { padding-top: 30px; }
+    .games-heading { margin: 50px 0 30px; }
+    .games-heading h1 { font-size: 2.75rem; }
+    .review-notice { padding: 18px; }
+    .game-card { min-height: auto; }
+  }
+</style>
