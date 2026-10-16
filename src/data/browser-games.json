@@ -1,0 +1,170 @@
+[
+  {
+    "name": "BO1 Zombies",
+    "url": "https://vel.gg/bolz",
+    "genre": "Shooter",
+    "summary": "A community-listed browser destination for Black Ops Zombies.",
+    "status": "unverified",
+    "note": "The destination could not be inspected during this review."
+  },
+  {
+    "name": "Black Ops 2 (fan project)",
+    "url": "https://vibeslops.luckeysystems.com/",
+    "genre": "Shooter",
+    "summary": "An unofficial fan-made Black Ops 2 browser project.",
+    "status": "unverified",
+    "note": "The page responded, but its game features and availability were not confirmed."
+  },
+  {
+    "name": "Modern Warfare 2 (source label)",
+    "url": "https://ovz-game-production.up.railway.app/",
+    "genre": "Shooter",
+    "summary": "A link shared under the Modern Warfare 2 name.",
+    "status": "mismatch",
+    "note": "The destination currently identifies itself as 'Contemporary Conflict: Global Flashpoint', not Modern Warfare 2."
+  },
+  {
+    "name": "Skate 3 (fan project)",
+    "url": "https://skate.aaddpp.lol/",
+    "genre": "Sports & Racing",
+    "summary": "A fan-built browser experience associated with Skate 3.",
+    "status": "landing-reviewed",
+    "note": "The project says it streams data from your own converted copy of Skate 3."
+  },
+  {
+    "name": "Skate Rust (source label)",
+    "url": "https://global-terror.net/",
+    "genre": "Sports & Racing",
+    "summary": "A URL originally shared as a skateboarding game.",
+    "status": "mismatch",
+    "note": "The destination currently shows an unrelated TERRORDOTNET content and merchandise website."
+  },
+  {
+    "name": "CS Surf",
+    "url": "https://surfd.net/",
+    "genre": "Shooter",
+    "summary": "A browser destination for classic Counter-Strike-style surfing.",
+    "status": "landing-reviewed",
+    "note": "The destination identifies itself as 'Surfd — Classic surf'."
+  },
+  {
+    "name": "Halo: Combat Evolved",
+    "url": "https://mitchellhynes.com/halo",
+    "genre": "Shooter",
+    "summary": "A community-listed browser project associated with Halo: Combat Evolved.",
+    "status": "unverified",
+    "note": "The destination could not be inspected during this review."
+  },
+  {
+    "name": "Halo CE Mobile",
+    "url": "https://hcemobile.com/",
+    "genre": "Shooter",
+    "summary": "A browser-accessible Halo: Combat Evolved mobile-oriented project.",
+    "status": "landing-reviewed",
+    "note": "The destination identifies itself as 'Halo: Combat Evolved Mobile'."
+  },
+  {
+    "name": "PES 6",
+    "url": "https://pes6.optijuegos.net/",
+    "genre": "Sports & Racing",
+    "summary": "A browser port project associated with Pro Evolution Soccer 6.",
+    "status": "landing-reviewed",
+    "note": "The destination identifies itself as 'PES 6 Web Online Port'."
+  },
+  {
+    "name": "GTA: Vice City",
+    "url": "https://joncodeofficial.github.io/gta-vice-city-wasm/",
+    "genre": "Action & Adventure",
+    "summary": "A browser-oriented WebAssembly project referencing GTA: Vice City.",
+    "status": "landing-reviewed",
+    "note": "The destination identifies itself as a WASM port; licensing and gameplay were not audited."
+  },
+  {
+    "name": "Quake (QuakeWorld)",
+    "url": "https://q1.pieter.com/",
+    "genre": "Shooter",
+    "summary": "An unofficial web-based QuakeWorld multiplayer preservation project.",
+    "status": "landing-reviewed",
+    "note": "The project states support for up to eight multiplayer participants."
+  },
+  {
+    "name": "Quake II",
+    "url": "https://q2.pieter.com/",
+    "genre": "Shooter",
+    "summary": "An unofficial Quake II multiplayer preservation project for browsers.",
+    "status": "landing-reviewed",
+    "note": "The project states support for up to eight multiplayer participants."
+  },
+  {
+    "name": "Quake III Arena",
+    "url": "https://q3.pieter.com/",
+    "genre": "Shooter",
+    "summary": "An unofficial Quake III browser multiplayer experience.",
+    "status": "landing-reviewed",
+    "note": "The project page advertises mobile and gamepad support."
+  },
+  {
+    "name": "Return to Castle Wolfenstein",
+    "url": "https://rtcw.pieter.com/",
+    "genre": "Shooter",
+    "summary": "An unofficial browser-based RTCW multiplayer preservation project.",
+    "status": "landing-reviewed",
+    "note": "The project warns of an approximately 380 MB initial game-data download."
+  },
+  {
+    "name": "Urban Terror",
+    "url": "https://ut.pieter.com/",
+    "genre": "Shooter",
+    "summary": "An unofficial browser multiplayer preservation of Urban Terror.",
+    "status": "landing-reviewed",
+    "note": "The source image mislabeled this URL as Unreal Tournament. The destination is Urban Terror."
+  },
+  {
+    "name": "Half-Life (Xash3D)",
+    "url": "https://pixelsuft.github.io/hl/",
+    "genre": "Shooter",
+    "summary": "A browser-facing Xash3D Emscripten port associated with Half-Life.",
+    "status": "landing-reviewed",
+    "note": "Project landing page and its source repository were located; required game assets may vary."
+  },
+  {
+    "name": "Counter-Strike 1.6 / Half-Life (WebXash)",
+    "url": "https://x8bitrain.github.io/webXash/",
+    "genre": "Shooter",
+    "summary": "A WebXash browser project associated with Half-Life and Counter-Strike assets.",
+    "status": "unverified",
+    "note": "The URL responded, but the visible page did not establish gameplay or required files."
+  },
+  {
+    "name": "Diablo Web",
+    "url": "https://johnimrl.github.io/diablo_web",
+    "genre": "RPG & Strategy",
+    "summary": "A community-listed browser project associated with the original Diablo.",
+    "status": "unverified",
+    "note": "The destination could not be inspected during this review."
+  },
+  {
+    "name": "Hedgewars (WebWars)",
+    "url": "https://webwars.link/",
+    "genre": "RPG & Strategy",
+    "summary": "An open-source WebAssembly browser port of the artillery game Hedgewars.",
+    "status": "landing-reviewed",
+    "note": "The project's public repository documents local play and experimental multiplayer."
+  },
+  {
+    "name": "The Simpsons: Hit & Run",
+    "url": "https://wasmarcade.com/simpsons",
+    "genre": "Action & Adventure",
+    "summary": "A WASM Arcade listing for the classic Simpsons driving adventure.",
+    "status": "landing-reviewed",
+    "note": "The hosting page was inspected; copyright permissions and full gameplay were not audited."
+  },
+  {
+    "name": "Minecraft",
+    "url": "https://wasmarcade.com/minecraft",
+    "genre": "Sandbox",
+    "summary": "A browser Minecraft listing provided by WASM Arcade.",
+    "status": "landing-reviewed",
+    "note": "The hosting page was inspected; copyright permissions and full gameplay were not audited."
+  }
+]
