@@ -45,6 +45,40 @@ Accepted categories:
 
 `verification` must be `confirmed` (the official project/repository was identified) or `unverified` (identity or URL needs confirmation). It **does not** mean functionality or security has been audited.
 
+## Submit a prompt or workflow guide
+
+Use the [prompt suggestion form](https://github.com/jbqneto/ai-tools-catalog/issues/new?template=prompt-suggestion.yml) if you do not want to modify code.
+
+For a Pull Request, create a Markdown file under `src/content/prompts/` with this schema:
+
+```md
+---
+title: "Minimal App Presentation"
+summary: "A copy-ready template for a 30-second animated product presentation."
+kind: "prompt"
+category: "App Promotion"
+tags: ["GSAP", "Product video"]
+sourceNote: "Original idea inspired by a public reference; rewritten independently."
+relatedUrl: "https://gsap.com/"
+---
+
+## Reusable prompt
+
+```text
+Create a 30-second product animation for [APP_NAME]...
+```
+```
+
+Supported `kind` values: `prompt`, `workflow`.
+Supported `category` values: `App Promotion`, `Motion Design`, `Video Production`, `Video Editing`.
+
+- Use **English** everywhere.
+- Rewrite and adapt ideas in your own words; do not copy whole articles or creators' text without permission.
+- A named slash command from a social post is **not** a verified installable skill without a confirmed source.
+- Keep placeholders such as `[APP_NAME]` rather than adding personal credentials.
+- Identify licensing, privacy, platform, and export limitations where relevant.
+- Include real, official project links only when verified.
+
 ## Editorial rules
 
 - No rankings, star ratings, affiliate links, or sponsored placements.
