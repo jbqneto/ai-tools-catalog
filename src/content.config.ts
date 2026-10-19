@@ -23,4 +23,17 @@ const tools = defineCollection({
   }),
 });
 
-export const collections = { tools };
+const prompts = defineCollection({
+  loader: glob({ base: './src/content/prompts', pattern: '**/*.md' }),
+  schema: z.object({
+    title: z.string().min(3),
+    summary: z.string().min(25).max(240),
+    kind: z.enum(['prompt', 'workflow']),
+    category: z.enum(['App Promotion', 'Motion Design', 'Video Production', 'Video Editing']),
+    tags: z.array(z.string()).default([]),
+    sourceNote: z.string().optional(),
+    relatedUrl: z.string().url().optional(),
+  }),
+});
+
+export const collections = { tools, prompts };

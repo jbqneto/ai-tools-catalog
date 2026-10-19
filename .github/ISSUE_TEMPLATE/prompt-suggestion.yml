@@ -1,0 +1,37 @@
+name: Suggest a prompt or workflow
+description: Propose a reusable prompt template or a practical workflow guide
+title: "Prompt: "
+body:
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Entry type
+      options:
+        - Copy-ready prompt
+        - Workflow guide
+    validations:
+      required: true
+  - type: input
+    id: title
+    attributes:
+      label: Title
+      placeholder: Minimal product launch motion
+    validations:
+      required: true
+  - type: textarea
+    id: prompt
+    attributes:
+      label: Prompt or workflow
+      description: Share a complete, reusable description in English, with placeholders for personal details.
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Original source (optional)
+      description: Link to a tutorial, repository, or original post if known. Do not invent source links.
+  - type: textarea
+    id: notes
+    attributes:
+      label: Limitations and requirements
+      description: Note paid services, extra dependencies, usage restrictions, or incomplete verification.

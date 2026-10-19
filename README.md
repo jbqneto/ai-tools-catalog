@@ -37,6 +37,17 @@ Build the static site with `npm run build`.
 
 The workflow builds the website and publishes `dist/`. Every subsequent push to `main` redeploys automatically.
 
+## Prompts & Workflows
+
+The [Prompt Library](https://jbqneto.github.io/ai-tools-catalog/prompts/) is a separate collection for copy-ready prompts and workflow guides. **Entries in this collection are not software listings or proof of an installable skill.**
+
+- Source files: `src/content/prompts/*.md`
+- Listing page: `src/pages/prompts/index.astro`
+- Detail pages: `src/pages/prompts/[slug].astro`
+- Entries can include a source context note and a related verified project link.
+- Templates are independently written in English, with editable placeholders and explicit caveats.
+- Suggestions are welcome through the [Prompt / Workflow Issue template](https://github.com/jbqneto/ai-tools-catalog/issues/new?template=prompt-suggestion.yml).
+
 ## Browser games (separate collection)
 
 The site also keeps a small, separate list of [browser game links](https://jbqneto.github.io/ai-tools-catalog/browser-games/). These are **not categorized or counted as AI tools**.
