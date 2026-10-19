@@ -51,7 +51,7 @@ Use the [prompt suggestion form](https://github.com/jbqneto/ai-tools-catalog/iss
 
 For a Pull Request, create a Markdown file under `src/content/prompts/` with this schema:
 
-```md
+````md
 ---
 title: "Minimal App Presentation"
 summary: "A copy-ready template for a 30-second animated product presentation."
@@ -67,7 +67,7 @@ relatedUrl: "https://gsap.com/"
 ```text
 Create a 30-second product animation for [APP_NAME]...
 ```
-```
+````
 
 Supported `kind` values: `prompt`, `workflow`.
 Supported `category` values: `App Promotion`, `Motion Design`, `Video Production`, `Video Editing`.
