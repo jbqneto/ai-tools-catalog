@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const items = (await getCollection('prompts')).sort((a, b) => a.data.title.localeCompare(b.data.title));
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : import.meta.env.BASE_URL + '/';
+---
+<BaseLayout title="Prompts & Workflows — AI Tools Catalog" description="Browse reusable AI prompts and video-production workflows, collected and adapted for practical use.">
+  <section class="prompts-page container">
+    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href={base}>Directory</a><span>/</span><span>Prompts &amp; Workflows</span></nav>
+    <div class="prompt-heading">
+      <span class="eyebrow"><span class="signal-dot"></span> A PRACTICAL REFERENCE LIBRARY</span>
+      <h1>Ideas you can <span class="gradient-text">actually use.</span></h1>
+      <p>Copy-ready prompts and step-by-step workflows inspired by publicly shared examples. These are reference templates, not guaranteed results or installable skills.</p>
+      <div class="prompt-summary-counts"><span><strong>{items.filter((item) => item.data.kind === 'prompt').length}</strong> prompts</span><span><strong>{items.filter((item) => item.data.kind === 'workflow').length}</strong> workflows</span></div>
+    </div>
+    <div class="filter-panel">
+      <label class="sr-only" for="prompt-search">Search prompts and workflows</label>
+      <div class="search-box">
+        <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.8" cy="10.8" r="7.2"/><path d="m16.3 16.3 4.5 4.5"/></svg>
+        <input id="prompt-search" type="search" placeholder="Search prompts, video workflows, techniques..." autocomplete="off"/>
+      </div>
+      <div class="category-filters" aria-label="Content type filters" role="group">
+        <button type="button" class="filter-chip active" data-kind="all" aria-pressed="true">All <span>{items.length}</span></button>
+        <button type="button" class="filter-chip" data-kind="prompt" aria-pressed="false">Copy-ready prompts <span>{items.filter(item => item.data.kind === 'prompt').length}</span></button>
+        <button type="button" class="filter-chip" data-kind="workflow" aria-pressed="false">Workflow guides <span>{items.filter(item => item.data.kind === 'workflow').length}</span></button>
+      </div>
+    </div>
+    <p class="directory-meta" aria-live="polite" id="prompt-count">{items.length} references · Alphabetical, not ranked</p>
+    <div class="prompt-card-grid">
+      {items.map((item) => (
+        <article class="prompt-card" data-kind={item.data.kind} data-search={[item.data.title,item.data.summary,item.data.category,...item.data.tags].join(' ').toLowerCase()}>
+          <div class="prompt-card-top"><span class="prompt-kind">{item.data.kind === 'prompt' ? 'PROMPT TEMPLATE' : 'WORKFLOW GUIDE'}</span><span class="prompt-category">{item.data.category}</span></div>
+          <h2><a href={base + 'prompts/' + item.id + '/'}>{item.data.title}</a></h2>
+          <p>{item.data.summary}</p>
+          <div class="card-bottom"><div class="tag-list">{item.data.tags.slice(0,2).map(tag => <span class="tag">{tag}</span>)}</div><a class="card-more" href={base + 'prompts/' + item.id + '/'}>Read &amp; copy →</a></div>
+        </article>
+      ))}
+    </div>
+    <div class="empty-state" id="prompt-empty" hidden><h2>No matches</h2><p>Try another search or select all content types.</p></div>
+    <div class="prompt-library-note">Entries are independently adapted references. Skill names from social media are not automatically verified GitHub packages. See individual guides for source and project links.</div>
+  </section>
+  <script>
+    const search = document.querySelector<HTMLInputElement>('#prompt-search');
+    const cards = [...document.querySelectorAll<HTMLElement>('.prompt-card')];
+    const buttons = [...document.querySelectorAll<HTMLButtonElement>('[data-kind]')].filter(el => el.tagName === 'BUTTON');
+    const count = document.querySelector<HTMLElement>('#prompt-count');
+    const empty = document.querySelector<HTMLElement>('#prompt-empty');
+    let kind = 'all';
+    function filter() {
+      let visible = 0;
+      const q = (search?.value || '').trim().toLowerCase();
+      cards.forEach(card => {
+        const show = (kind === 'all' || card.dataset.kind === kind) && (!q || (card.dataset.search || '').includes(q));
+        card.hidden = !show;
+        if (show) visible++;
+      });
+      if (count) count.textContent = visible + ' of ' + cards.length + ' references · Alphabetical, not ranked';
+      if (empty) empty.hidden = visible !== 0;
+    }
+    search?.addEventListener('input', filter);
+    buttons.forEach(button => button.addEventListener('click', () => {
+      kind = button.dataset.kind || 'all';
+      buttons.forEach(b => { const active = b === button; b.classList.toggle('active', active); b.setAttribute('aria-pressed', String(active)); });
+      filter();
+    }));
+  </script>
+</BaseLayout>
