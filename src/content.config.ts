@@ -15,6 +15,7 @@ const tools = defineCollection({
       'Learning & Research',
       'Finance',
       '3D & Interactive',
+      'Open Source Apps',
     ]),
     url: z.string().url(),
     repository: z.string().url().optional(),
