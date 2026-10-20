@@ -42,6 +42,7 @@ Accepted categories:
 - Learning & Research
 - Finance
 - 3D & Interactive
+- Open Source Apps (general self-hosted or open-source utilities; do not label them AI-powered unless documented)
 
 `verification` must be `confirmed` (the official project/repository was identified) or `unverified` (identity or URL needs confirmation). It **does not** mean functionality or security has been audited.
 
