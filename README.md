@@ -48,6 +48,10 @@ The [Prompt Library](https://jbqneto.github.io/ai-tools-catalog/prompts/) is a s
 - Templates are independently written in English, with editable placeholders and explicit caveats.
 - Suggestions are welcome through the [Prompt / Workflow Issue template](https://github.com/jbqneto/ai-tools-catalog/issues/new?template=prompt-suggestion.yml).
 
+## General open-source apps
+
+A small **Open Source Apps** category holds community-suggested applications that do **not** claim AI features. These are labeled separately from AI-specific integrations and developer agents to avoid misrepresenting their capabilities.
+
 ## Browser games (separate collection)
 
 The site also keeps a small, separate list of [browser game links](https://jbqneto.github.io/ai-tools-catalog/browser-games/). These are **not categorized or counted as AI tools**.
