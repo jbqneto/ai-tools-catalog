@@ -29,13 +29,13 @@ const tools = defineCollection({
       'Directory & collection',
       'Reference project',
       'AI model',
-    ]),
+    ]).optional(),
     aiRelationship: z.enum([
       'AI-powered',
       'AI-integrated',
       'AI ecosystem',
       'Not AI-specific',
-    ]),
+    ]).optional(),
     verification: z.enum(['confirmed', 'unverified']).default('confirmed'),
   }),
 });
