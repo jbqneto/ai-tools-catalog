@@ -40,6 +40,34 @@ body:
         - 3D & Interactive
     validations:
       required: true
+  - type: dropdown
+    id: resource_type
+    attributes:
+      label: Resource type
+      description: What kind of resource is this, independent of its use case?
+      options:
+        - Application
+        - Agent skill
+        - MCP server
+        - Library & framework
+        - Developer utility
+        - Directory & collection
+        - Reference project
+        - AI model
+    validations:
+      required: true
+  - type: dropdown
+    id: ai_relationship
+    attributes:
+      label: Relationship with AI
+      description: Is AI essential, optional, or just part of the ecosystem?
+      options:
+        - AI-powered
+        - AI-integrated
+        - AI ecosystem
+        - Not AI-specific
+    validations:
+      required: true
   - type: textarea
     id: notes
     attributes:

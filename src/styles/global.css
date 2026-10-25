@@ -516,3 +516,10 @@ h1,h2,h3{font-family:'Space Grotesk',sans-serif;line-height:1.15;letter-spacing:
 .prompt-copy{background:#b2abff;color:#121328;border:0;border-radius:8px;padding:7px 12px;font-size:.76rem;font-weight:800;margin-top:20px}
 .prompt-copy:hover{background:#d0caff}
 @media(max-width:700px){.prompt-promo{align-items:start;flex-wrap:wrap;padding:23px}.prompt-promo .secondary-button{width:100%}.prompt-card-grid{grid-template-columns:1fr}.prompt-heading{margin-top:45px}.prompt-detail-heading{margin-top:45px}}
+
+/* Independent resource-type and AI relationship facets */
+.taxonomy-filters{display:flex;align-items:end;flex-wrap:wrap;gap:12px;margin:12px 0}
+.taxonomy-filters label{display:flex;flex-direction:column;gap:7px;flex:1 1 210px;color:#aab8d0;font-size:.78rem;font-weight:600}
+.taxonomy-filters select{width:100%;border-radius:10px;border:1px solid #39475e;background:#131e31;color:#eef0f9;padding:11px 36px 11px 12px;font:inherit;font-size:.88rem;cursor:pointer}
+.taxonomy-filters select:focus-visible{outline:2px solid #aa9dff;outline-offset:2px}
+@media(max-width:520px){.taxonomy-filters{gap:10px}.taxonomy-filters label{flex-basis:100%}}

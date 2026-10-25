@@ -1,8 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-const tools = (await getCollection('tools')).sort((a, b) => a.data.name.localeCompare(b.data.name));
+import { classifyTool } from '../lib/classification';
+const tools = (await getCollection('tools')).sort((a, b) => a.data.name.localeCompare(b.data.name)).map(tool => ({...tool, classification: classifyTool(tool)}));
 const categories = [...new Set(tools.map((tool) => tool.data.category))].sort();
+const resourceTypes = [...new Set(tools.map((tool) => tool.classification.resourceType))].sort();
+const aiRelationships = ['AI-powered', 'AI-integrated', 'AI ecosystem', 'Not AI-specific'];
 const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : import.meta.env.BASE_URL + '/';
 const categorySymbols = {
   'Agents & Automation': '◈',
@@ -62,7 +65,7 @@ const categorySymbols = {
 
   <section class="catalog-section container" id="directory" aria-label="Tool directory">
     <div class="section-heading">
-      <div><div class="overline">THE DIRECTORY</div><h2>Explore the collection</h2><p>Browse by category or search by name, description, or tag.</p></div>
+      <div><div class="overline">THE DIRECTORY</div><h2>Explore the collection</h2><p>Filter by resource type, AI relationship, or area of use; search by name, description, or tag.</p></div>
       <a href={base + 'contribute/'} class="text-action">Missing something? Contribute <span aria-hidden="true">↗</span></a>
     </div>
 
@@ -75,7 +78,21 @@ const categorySymbols = {
         <kbd class="search-hint" aria-hidden="true">/</kbd>
       </div>
       <p class="sr-only" id="search-help">Press slash to search, or Escape to clear the search.</p>
-      <div class="category-filters" role="group" aria-label="Filter by category">
+      <div class="taxonomy-filters">
+        <label for="resource-type-filter">Resource type
+          <select id="resource-type-filter" aria-controls="tools-grid">
+            <option value="all">All resource types</option>
+            {resourceTypes.map(type => <option value={type}>{type}</option>)}
+          </select>
+        </label>
+        <label for="ai-relationship-filter">Relationship with AI
+          <select id="ai-relationship-filter" aria-controls="tools-grid">
+            <option value="all">Any AI relationship</option>
+            {aiRelationships.map(role => <option value={role}>{role}</option>)}
+          </select>
+        </label>
+      </div>
+      <div class="category-filters" role="group" aria-label="Filter by area of use">
         <button class="filter-chip active" type="button" data-filter="all" aria-controls="tools-grid" aria-pressed="true">All tools <span>{tools.length}</span></button>
         {categories.map((category) => (
           <button class="filter-chip" type="button" data-filter={category} aria-controls="tools-grid" aria-pressed="false">{category} <span>{tools.filter((tool) => tool.data.category === category).length}</span></button>
@@ -90,10 +107,10 @@ const categorySymbols = {
 
     <div class="tools-grid" id="tools-grid">
       {tools.map((tool) => (
-        <article class="tool-card" data-category={tool.data.category} data-search={[tool.data.name,tool.data.summary,tool.data.category,...tool.data.tags].join(' ').toLowerCase()}>
+        <article class="tool-card" data-category={tool.data.category} data-resource-type={tool.classification.resourceType} data-ai-relationship={tool.classification.aiRelationship} data-search={[tool.data.name,tool.data.summary,tool.classification.resourceType,tool.classification.aiRelationship,tool.data.category,...tool.data.tags].join(' ').toLowerCase()}>
           <div class="card-top">
             <div class="tool-icon" aria-hidden="true">{categorySymbols[tool.data.category]}</div>
-            <span class="card-category">{tool.data.category}</span>
+            <span class="card-category" title={tool.data.category}>{tool.classification.resourceType} · {tool.classification.aiRelationship}</span>
             <a class="card-external" href={tool.data.url} target="_blank" rel="noopener noreferrer" aria-label={'Visit ' + tool.data.name + ' official link'}>↗</a>
           </div>
           <a class="tool-name" style={'view-transition-name: tool-' + tool.id} href={base + 'tools/' + tool.id + '/'}>{tool.data.name}</a>
@@ -113,7 +130,9 @@ const categorySymbols = {
   <script>
     const searchInput = document.querySelector<HTMLInputElement>('#tool-search');
     const cards = [...document.querySelectorAll<HTMLElement>('.tool-card')];
-    const filterButtons = [...document.querySelectorAll<HTMLButtonElement>('.filter-chip')];
+    const filterButtons = [...document.querySelectorAll<HTMLButtonElement>('.category-filters .filter-chip')];
+    const typeFilter = document.querySelector<HTMLSelectElement>('#resource-type-filter');
+    const relationshipFilter = document.querySelector<HTMLSelectElement>('#ai-relationship-filter');
     const count = document.querySelector<HTMLElement>('#results-count');
     const empty = document.querySelector<HTMLElement>('#empty-state');
     const reset = document.querySelector<HTMLButtonElement>('#reset-filters');
@@ -134,6 +153,10 @@ const categorySymbols = {
       else url.searchParams.delete('q');
       if (selectedCategory !== 'all') url.searchParams.set('category', selectedCategory);
       else url.searchParams.delete('category');
+      if (typeFilter?.value && typeFilter.value !== 'all') url.searchParams.set('type', typeFilter.value);
+      else url.searchParams.delete('type');
+      if (relationshipFilter?.value && relationshipFilter.value !== 'all') url.searchParams.set('ai', relationshipFilter.value);
+      else url.searchParams.delete('ai');
       if (url.href !== window.location.href) {
         if (mode === 'push') history.pushState(null, '', url);
         else history.replaceState(null, '', url);
@@ -145,7 +168,9 @@ const categorySymbols = {
       let visible = 0;
       for (const { element, text } of searchableCards) {
         const matchesCategory = selectedCategory === 'all' || element.dataset.category === selectedCategory;
-        const matches = matchesCategory && (!query || text.includes(query));
+        const matchesType = !typeFilter || typeFilter.value === 'all' || element.dataset.resourceType === typeFilter.value;
+        const matchesAi = !relationshipFilter || relationshipFilter.value === 'all' || element.dataset.aiRelationship === relationshipFilter.value;
+        const matches = matchesCategory && matchesType && matchesAi && (!query || text.includes(query));
         element.hidden = !matches;
         if (matches) visible++;
       }
@@ -171,6 +196,14 @@ const categorySymbols = {
     function restoreFromUrl() {
       const params = new URLSearchParams(window.location.search);
       if (searchInput) searchInput.value = params.get('q') || '';
+      if (typeFilter) {
+        const type = params.get('type') || 'all';
+        typeFilter.value = [...typeFilter.options].some(option => option.value === type) ? type : 'all';
+      }
+      if (relationshipFilter) {
+        const role = params.get('ai') || 'all';
+        relationshipFilter.value = [...relationshipFilter.options].some(option => option.value === role) ? role : 'all';
+      }
       setCategory(params.get('category') || 'all', false);
     }
 
@@ -190,8 +223,13 @@ const categorySymbols = {
     filterButtons.forEach((button) =>
       button.addEventListener('click', () => setCategory(button.dataset.filter || 'all'))
     );
+    for (const selector of [typeFilter, relationshipFilter]) {
+      selector?.addEventListener('change', () => { applyFilters(); updateUrl('push'); });
+    }
     reset?.addEventListener('click', () => {
       if (searchInput) searchInput.value = '';
+      if (typeFilter) typeFilter.value = 'all';
+      if (relationshipFilter) relationshipFilter.value = 'all';
       setCategory('all');
       applyFilters();
       updateUrl('replace');

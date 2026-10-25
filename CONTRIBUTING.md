@@ -25,6 +25,8 @@ category: "Developer Tools"
 url: "https://example.org"
 repository: "https://github.com/example/example"
 tags: ["CLI", "Open source"]
+resourceType: "Developer utility"
+aiRelationship: "Not AI-specific"
 verification: "confirmed"
 ---
 
@@ -43,6 +45,28 @@ Accepted categories:
 - Finance
 - 3D & Interactive
 - Open Source Apps (general self-hosted or open-source utilities; do not label them AI-powered unless documented)
+
+**Resource type** describes what the item **is**, independently of its area of use:
+
+- `Application` — user-facing software
+- `Agent skill` — reusable instructions, commands, or skill packs for agents
+- `MCP server` — a Model Context Protocol server or connector
+- `Library & framework` — an SDK, reusable library, or development framework
+- `Developer utility` — command-line tools, automation utilities, and developer helpers
+- `Directory & collection` — curated catalogs, marketplaces, or resource indexes
+- `Reference project` — demonstrations, experiments, workshop samples, and sample projects
+- `AI model` — a published model or model package
+
+**AI relationship** is a separate factual classification:
+
+- `AI-powered` — model inference is central to core functionality
+- `AI-integrated` — software includes optional or integrated AI features
+- `AI ecosystem` — infrastructure, agent skills, and related tools designed to support AI workflows
+- `Not AI-specific` — general software or reference that does not require AI
+
+Avoid labeling a library as "AI-powered" merely because an AI coding assistant can use it. Prefer evidence from maintainers' documentation.
+
+**Duplicate prevention:** search the existing catalog for names, spelling variations, aliases, official URLs, and source repositories before submitting a new entry. If a resource already exists, submit a correction or update to its existing file instead. A build-time duplicate URL check protects against exact/canonical URL repeats but does not replace manual review of rebrands and forks.
 
 `verification` must be `confirmed` (the official project/repository was identified) or `unverified` (identity or URL needs confirmation). It **does not** mean functionality or security has been audited.
 
