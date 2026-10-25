@@ -56,7 +56,7 @@ for (const filename of files) {
   if (!name || !url) { errors.push('Missing name or official URL: ' + filename); continue; }
   const normalizedName = name.normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '');
   register(seenNames, normalizedName, slug, 'Name');
-  for (const candidate of [url, repository]) {
+  for (const candidate of [url, repository].filter(Boolean)) {
     const canonical = canonicalUrl(candidate);
     if (!canonical) errors.push('Invalid URL: ' + filename + ' ' + candidate);
     else register(seenUrls, canonical, slug, 'URL');
