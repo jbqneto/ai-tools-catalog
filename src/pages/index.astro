@@ -1,9 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-const tools = (await getCollection('tools')).sort((a, b) => a.data.name.localeCompare(b.data.name));
+import { classifyTool } from '../lib/classification';
+const tools = (await getCollection('tools')).sort((a, b) => a.data.name.localeCompare(b.data.name)).map(tool => ({...tool, classification: classifyTool(tool)}));
 const categories = [...new Set(tools.map((tool) => tool.data.category))].sort();
-const resourceTypes = [...new Set(tools.map((tool) => tool.data.resourceType))].sort();
+const resourceTypes = [...new Set(tools.map((tool) => tool.classification.resourceType))].sort();
 const aiRelationships = ['AI-powered', 'AI-integrated', 'AI ecosystem', 'Not AI-specific'];
 const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : import.meta.env.BASE_URL + '/';
 const categorySymbols = {
@@ -106,10 +107,10 @@ const categorySymbols = {
 
     <div class="tools-grid" id="tools-grid">
       {tools.map((tool) => (
-        <article class="tool-card" data-category={tool.data.category} data-resource-type={tool.data.resourceType} data-ai-relationship={tool.data.aiRelationship} data-search={[tool.data.name,tool.data.summary,tool.data.resourceType,tool.data.aiRelationship,tool.data.category,...tool.data.tags].join(' ').toLowerCase()}>
+        <article class="tool-card" data-category={tool.data.category} data-resource-type={tool.classification.resourceType} data-ai-relationship={tool.classification.aiRelationship} data-search={[tool.data.name,tool.data.summary,tool.classification.resourceType,tool.classification.aiRelationship,tool.data.category,...tool.data.tags].join(' ').toLowerCase()}>
           <div class="card-top">
             <div class="tool-icon" aria-hidden="true">{categorySymbols[tool.data.category]}</div>
-            <span class="card-category" title={tool.data.category}>{tool.data.resourceType} · {tool.data.aiRelationship}</span>
+            <span class="card-category" title={tool.data.category}>{tool.classification.resourceType} · {tool.classification.aiRelationship}</span>
             <a class="card-external" href={tool.data.url} target="_blank" rel="noopener noreferrer" aria-label={'Visit ' + tool.data.name + ' official link'}>↗</a>
           </div>
           <a class="tool-name" style={'view-transition-name: tool-' + tool.id} href={base + 'tools/' + tool.id + '/'}>{tool.data.name}</a>
