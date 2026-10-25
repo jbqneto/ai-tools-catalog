@@ -17,5 +17,7 @@ jobs:
           node-version: '22'
       - name: Install dependencies
         run: npm install --no-audit --no-fund
+      - name: Check catalog duplicate links and names
+        run: npm run check:catalog
       - name: Validate Astro build and catalog schema
         run: npm run build
