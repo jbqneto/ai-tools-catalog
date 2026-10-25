@@ -20,6 +20,22 @@ const tools = defineCollection({
     url: z.string().url(),
     repository: z.string().url().optional(),
     tags: z.array(z.string()).default([]),
+    resourceType: z.enum([
+      'Application',
+      'Agent skill',
+      'MCP server',
+      'Library & framework',
+      'Developer utility',
+      'Directory & collection',
+      'Reference project',
+      'AI model',
+    ]),
+    aiRelationship: z.enum([
+      'AI-powered',
+      'AI-integrated',
+      'AI ecosystem',
+      'Not AI-specific',
+    ]),
     verification: z.enum(['confirmed', 'unverified']).default('confirmed'),
   }),
 });
