@@ -38,6 +38,7 @@ body:
         - Learning & Research
         - Finance
         - 3D & Interactive
+        - Open Source Apps
     validations:
       required: true
   - type: dropdown
