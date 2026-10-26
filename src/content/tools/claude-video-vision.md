@@ -5,6 +5,8 @@ category: "Learning & Research"
 url: "https://github.com/Moh4696/claude-video-vision"
 repository: "https://github.com/Moh4696/claude-video-vision"
 tags: ["Video analysis", "Whisper", "Offline", "Agent Skills"]
+resourceType: "Agent Skill"
+aiInvolvement: "AI ecosystem"
 verification: "confirmed"
 ---
 

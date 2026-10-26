@@ -4,6 +4,8 @@ summary: "An independent discovery directory for Claude Code skills, plugins, MC
 category: "Developer Tools"
 url: "https://www.claudemarketplace.net/"
 tags: ["Claude Code", "Skills", "Marketplace", "MCP"]
+resourceType: "Directory / Collection"
+aiInvolvement: "AI ecosystem"
 verification: "confirmed"
 ---
 

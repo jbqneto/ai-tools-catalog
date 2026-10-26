@@ -5,6 +5,8 @@ category: "Data & Documents"
 url: "https://github.com/storytold/deckcraft"
 repository: "https://github.com/storytold/deckcraft"
 tags: ["Presentations", "Slides", "ArtCraft"]
+resourceType: "Application"
+aiInvolvement: "No AI required"
 verification: "confirmed"
 ---
 

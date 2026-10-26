@@ -5,6 +5,8 @@ category: "Media & Creative"
 url: "https://github.com/digitalsamba/claude-code-video-toolkit"
 repository: "https://github.com/digitalsamba/claude-code-video-toolkit"
 tags: ["Claude Code", "Video production", "Skills"]
+resourceType: "Directory / Collection"
+aiInvolvement: "AI ecosystem"
 verification: "confirmed"
 ---
 

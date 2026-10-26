@@ -5,6 +5,8 @@ category: "Media & Creative"
 url: "https://github.com/howseen-ai/claude-motion-design"
 repository: "https://github.com/howseen-ai/claude-motion-design"
 tags: ["Claude Code", "HTML", "FFmpeg"]
+resourceType: "Agent Skill"
+aiInvolvement: "AI ecosystem"
 verification: "confirmed"
 ---
 

@@ -5,6 +5,8 @@ category: "Media & Creative"
 url: "https://github.com/storytold/designcraft"
 repository: "https://github.com/storytold/designcraft"
 tags: ["Layout", "Publishing", "ArtCraft"]
+resourceType: "Application"
+aiInvolvement: "No AI required"
 verification: "confirmed"
 ---
 
