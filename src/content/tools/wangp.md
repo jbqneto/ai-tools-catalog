@@ -5,6 +5,9 @@ category: "Media & Creative"
 url: "https://github.com/deepbeepmeep/Wan2GP"
 repository: "https://github.com/deepbeepmeep/Wan2GP"
 tags: ["Video", "Image generation", "Local AI"]
+resourceType: "Application"
+aiInvolvement: "Core AI"
+aliases: ["WanGP","Wan2GP"]
 verification: "confirmed"
 ---
 

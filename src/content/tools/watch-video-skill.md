@@ -5,6 +5,8 @@ category: "Learning & Research"
 url: "https://github.com/Newuxtreme/watch-video-skill"
 repository: "https://github.com/Newuxtreme/watch-video-skill"
 tags: ["Video analysis", "Agent Skills", "Transcripts", "Frames"]
+resourceType: "Agent Skill"
+aiInvolvement: "AI ecosystem"
 verification: "confirmed"
 ---
 

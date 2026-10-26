@@ -5,6 +5,8 @@ category: "Media & Creative"
 url: "https://github.com/Vincentwei1021/video-shotcraft"
 repository: "https://github.com/Vincentwei1021/video-shotcraft"
 tags: ["Product videos", "Remotion", "Agent Skills", "Shot design"]
+resourceType: "Agent Skill"
+aiInvolvement: "AI ecosystem"
 verification: "confirmed"
 ---
 
