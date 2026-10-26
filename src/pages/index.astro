@@ -3,6 +3,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 const tools = (await getCollection('tools')).sort((a, b) => a.data.name.localeCompare(b.data.name));
 const categories = [...new Set(tools.map((tool) => tool.data.category))].sort();
+const resourceTypes = [...new Set(tools.map((tool) => tool.data.resourceType))].sort();
+const aiRelations = [...new Set(tools.map((tool) => tool.data.aiInvolvement))].sort();
 const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : import.meta.env.BASE_URL + '/';
 const categorySymbols = {
   'Agents & Automation': '◈',
@@ -62,7 +64,7 @@ const categorySymbols = {
 
   <section class="catalog-section container" id="directory" aria-label="Tool directory">
     <div class="section-heading">
-      <div><div class="overline">THE DIRECTORY</div><h2>Explore the collection</h2><p>Browse by category or search by name, description, or tag.</p></div>
+      <div><div class="overline">THE DIRECTORY</div><h2>Explore the collection</h2><p>Browse by subject, resource type, or AI involvement. Search by name, description, or tag.</p></div>
       <a href={base + 'contribute/'} class="text-action">Missing something? Contribute <span aria-hidden="true">↗</span></a>
     </div>
 
@@ -81,6 +83,20 @@ const categorySymbols = {
           <button class="filter-chip" type="button" data-filter={category} aria-controls="tools-grid" aria-pressed="false">{category} <span>{tools.filter((tool) => tool.data.category === category).length}</span></button>
         ))}
       </div>
+      <div class="taxonomy-filters">
+        <label for="resource-type-filter">Resource type
+          <select id="resource-type-filter" aria-controls="tools-grid">
+            <option value="all">All resource types</option>
+            {resourceTypes.map((type) => <option value={type}>{type}</option>)}
+          </select>
+        </label>
+        <label for="ai-involvement-filter">AI involvement
+          <select id="ai-involvement-filter" aria-controls="tools-grid">
+            <option value="all">All AI involvement levels</option>
+            {aiRelations.map((relation) => <option value={relation}>{relation}</option>)}
+          </select>
+        </label>
+      </div>
     </div>
 
     <div class="directory-meta">
@@ -90,7 +106,7 @@ const categorySymbols = {
 
     <div class="tools-grid" id="tools-grid">
       {tools.map((tool) => (
-        <article class="tool-card" data-category={tool.data.category} data-search={[tool.data.name,tool.data.summary,tool.data.category,...tool.data.tags].join(' ').toLowerCase()}>
+        <article class="tool-card" data-category={tool.data.category} data-type={tool.data.resourceType} data-ai={tool.data.aiInvolvement} data-search={[tool.data.name,...tool.data.aliases,tool.data.summary,tool.data.category,tool.data.resourceType,tool.data.aiInvolvement,...tool.data.tags].join(' ').toLowerCase()}>
           <div class="card-top">
             <div class="tool-icon" aria-hidden="true">{categorySymbols[tool.data.category]}</div>
             <span class="card-category">{tool.data.category}</span>
@@ -98,6 +114,7 @@ const categorySymbols = {
           </div>
           <a class="tool-name" style={'view-transition-name: tool-' + tool.id} href={base + 'tools/' + tool.id + '/'}>{tool.data.name}</a>
           <p class="tool-summary">{tool.data.summary}</p>
+          <div class="card-taxonomy"><span>{tool.data.resourceType}</span><span>{tool.data.aiInvolvement}</span></div>
           <div class="card-bottom"><div class="tag-list">{tool.data.tags.slice(0, 3).map((tag) => <span class="tag">{tag}</span>)}</div><a class="card-more" href={base + 'tools/' + tool.id + '/'} aria-label={'Read details about ' + tool.data.name}>Details →</a></div>
         </article>
       ))}
@@ -113,7 +130,9 @@ const categorySymbols = {
   <script>
     const searchInput = document.querySelector<HTMLInputElement>('#tool-search');
     const cards = [...document.querySelectorAll<HTMLElement>('.tool-card')];
-    const filterButtons = [...document.querySelectorAll<HTMLButtonElement>('.filter-chip')];
+    const filterButtons = [...document.querySelectorAll<HTMLButtonElement>('.filter-chip[data-filter]')];
+    const typeSelect = document.querySelector<HTMLSelectElement>('#resource-type-filter');
+    const aiSelect = document.querySelector<HTMLSelectElement>('#ai-involvement-filter');
     const count = document.querySelector<HTMLElement>('#results-count');
     const empty = document.querySelector<HTMLElement>('#empty-state');
     const reset = document.querySelector<HTMLButtonElement>('#reset-filters');
@@ -134,6 +153,10 @@ const categorySymbols = {
       else url.searchParams.delete('q');
       if (selectedCategory !== 'all') url.searchParams.set('category', selectedCategory);
       else url.searchParams.delete('category');
+      if (typeSelect?.value && typeSelect.value !== 'all') url.searchParams.set('type', typeSelect.value);
+      else url.searchParams.delete('type');
+      if (aiSelect?.value && aiSelect.value !== 'all') url.searchParams.set('ai', aiSelect.value);
+      else url.searchParams.delete('ai');
       if (url.href !== window.location.href) {
         if (mode === 'push') history.pushState(null, '', url);
         else history.replaceState(null, '', url);
@@ -145,7 +168,9 @@ const categorySymbols = {
       let visible = 0;
       for (const { element, text } of searchableCards) {
         const matchesCategory = selectedCategory === 'all' || element.dataset.category === selectedCategory;
-        const matches = matchesCategory && (!query || text.includes(query));
+        const matchesType = !typeSelect || typeSelect.value === 'all' || element.dataset.type === typeSelect.value;
+        const matchesAi = !aiSelect || aiSelect.value === 'all' || element.dataset.ai === aiSelect.value;
+        const matches = matchesCategory && matchesType && matchesAi && (!query || text.includes(query));
         element.hidden = !matches;
         if (matches) visible++;
       }
@@ -171,6 +196,8 @@ const categorySymbols = {
     function restoreFromUrl() {
       const params = new URLSearchParams(window.location.search);
       if (searchInput) searchInput.value = params.get('q') || '';
+      if (typeSelect) typeSelect.value = [...typeSelect.options].some(option => option.value === params.get('type')) ? params.get('type')! : 'all';
+      if (aiSelect) aiSelect.value = [...aiSelect.options].some(option => option.value === params.get('ai')) ? params.get('ai')! : 'all';
       setCategory(params.get('category') || 'all', false);
     }
 
@@ -187,11 +214,17 @@ const categorySymbols = {
       updateUrl('replace');
     });
     clear?.addEventListener('click', clearSearch);
+    [typeSelect, aiSelect].forEach(select => select?.addEventListener('change', () => {
+      applyFilters();
+      updateUrl('push');
+    }));
     filterButtons.forEach((button) =>
       button.addEventListener('click', () => setCategory(button.dataset.filter || 'all'))
     );
     reset?.addEventListener('click', () => {
       if (searchInput) searchInput.value = '';
+      if (typeSelect) typeSelect.value = 'all';
+      if (aiSelect) aiSelect.value = 'all';
       setCategory('all');
       applyFilters();
       updateUrl('replace');
