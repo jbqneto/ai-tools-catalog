@@ -5,6 +5,9 @@ category: "Web & Monitoring"
 url: "https://github.com/dgtlmoon/changedetection.io"
 repository: "https://github.com/dgtlmoon/changedetection.io"
 tags: ["Website changes", "Alerts", "Self-hosted"]
+resourceType: "Application"
+aiInvolvement: "No AI required"
+aliases: ["changedetection.io"]
 verification: "confirmed"
 ---
 

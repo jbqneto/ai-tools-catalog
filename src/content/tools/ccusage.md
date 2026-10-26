@@ -5,6 +5,8 @@ category: "Developer Tools"
 url: "https://ccusage.com/"
 repository: "https://github.com/ccusage/ccusage"
 tags: ["CLI", "Token usage", "Cost analysis", "Claude Code", "Codex"]
+resourceType: "CLI / Developer Tool"
+aiInvolvement: "AI ecosystem"
 verification: "confirmed"
 ---
 

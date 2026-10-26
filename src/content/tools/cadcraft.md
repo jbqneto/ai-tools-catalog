@@ -5,6 +5,8 @@ category: "3D & Interactive"
 url: "https://github.com/storytold/cadcraft"
 repository: "https://github.com/storytold/cadcraft"
 tags: ["CAD", "Design", "ArtCraft"]
+resourceType: "Application"
+aiInvolvement: "No AI required"
 verification: "confirmed"
 ---
 

@@ -5,6 +5,8 @@ category: "Agents & Automation"
 url: "https://github.com/Panniantong/Agent-Reach"
 repository: "https://github.com/Panniantong/Agent-Reach"
 tags: ["Agents", "CLI", "Research"]
+resourceType: "CLI / Developer Tool"
+aiInvolvement: "AI ecosystem"
 verification: "confirmed"
 ---
 

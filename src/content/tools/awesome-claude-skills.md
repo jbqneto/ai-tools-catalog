@@ -5,6 +5,8 @@ category: "Learning & Research"
 url: "https://awesomeclaude.ai/awesome-claude-skills"
 repository: "https://github.com/BehiSecc/awesome-claude-skills"
 tags: ["Claude", "Skills", "Community directory", "Reference"]
+resourceType: "Directory / Collection"
+aiInvolvement: "AI ecosystem"
 verification: "confirmed"
 ---
 
