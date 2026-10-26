@@ -40,6 +40,47 @@ body:
         - 3D & Interactive
     validations:
       required: true
+  - type: dropdown
+    id: resourceType
+    attributes:
+      label: Resource type
+      description: What exactly is being shared? Use the project's official documentation, not its hosting platform.
+      options:
+        - Application
+        - CLI / Developer Tool
+        - Agent Skill
+        - MCP Server
+        - Library / Framework
+        - Directory / Collection
+        - Learning Resource
+        - Project / Demo
+    validations:
+      required: true
+  - type: dropdown
+    id: aiInvolvement
+    attributes:
+      label: AI involvement
+      description: Distinguish AI-powered features from tools that merely support AI workflows.
+      options:
+        - Core AI
+        - Optional AI
+        - AI ecosystem
+        - No AI required
+        - Unverified
+    validations:
+      required: true
+  - type: input
+    id: repository
+    attributes:
+      label: Canonical repository URL (if different)
+      description: Link the original upstream project, not a social media post or a random fork.
+  - type: checkboxes
+    id: duplicateCheck
+    attributes:
+      label: Duplicate check
+      options:
+        - label: I searched the catalog by project name, alternative names, and official website or repository.
+          required: true
   - type: textarea
     id: notes
     attributes:
