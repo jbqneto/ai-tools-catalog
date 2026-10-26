@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "validate:catalog": "node scripts/validate-catalog.mjs",
+    "prebuild": "npm run validate:catalog"
   },
   "dependencies": {
     "astro": "^7.4.0"
