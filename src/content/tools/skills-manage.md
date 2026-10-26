@@ -5,6 +5,8 @@ category: "Developer Tools"
 url: "https://github.com/iamzhihuix/skills-manage"
 repository: "https://github.com/iamzhihuix/skills-manage"
 tags: ["Skills", "Developer workflow"]
+resourceType: "Application"
+aiInvolvement: "Unverified"
 verification: "unverified"
 ---
 

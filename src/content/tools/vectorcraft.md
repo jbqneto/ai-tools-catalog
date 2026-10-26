@@ -5,6 +5,8 @@ category: "Media & Creative"
 url: "https://github.com/storytold/vectorcraft"
 repository: "https://github.com/storytold/vectorcraft"
 tags: ["Vector graphics", "Rust", "ArtCraft"]
+resourceType: "Application"
+aiInvolvement: "No AI required"
 verification: "confirmed"
 ---
 

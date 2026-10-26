@@ -5,6 +5,8 @@ category: "Web & Monitoring"
 url: "https://github.com/D4Vinci/Scrapling"
 repository: "https://github.com/D4Vinci/Scrapling"
 tags: ["Python", "Web scraping", "Crawling"]
+resourceType: "Library / Framework"
+aiInvolvement: "No AI required"
 verification: "confirmed"
 ---
 

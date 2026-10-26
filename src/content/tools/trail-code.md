@@ -5,6 +5,8 @@ category: "Developer Tools"
 url: "https://github.com/trailhq/Trail-Code"
 repository: "https://github.com/trailhq/Trail-Code"
 tags: ["Coding agents", "Code context", "Repository"]
+resourceType: "CLI / Developer Tool"
+aiInvolvement: "AI ecosystem"
 verification: "confirmed"
 ---
 

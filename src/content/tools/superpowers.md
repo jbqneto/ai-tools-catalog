@@ -5,6 +5,8 @@ category: "Developer Tools"
 url: "https://github.com/obra/superpowers"
 repository: "https://github.com/obra/superpowers"
 tags: ["Coding agents", "Planning", "TDD", "Agent Skills"]
+resourceType: "Directory / Collection"
+aiInvolvement: "AI ecosystem"
 verification: "confirmed"
 ---
 

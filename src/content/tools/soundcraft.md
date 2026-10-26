@@ -5,6 +5,8 @@ category: "Media & Creative"
 url: "https://github.com/storytold/soundcraft"
 repository: "https://github.com/storytold/soundcraft"
 tags: ["Audio", "Multitrack", "ArtCraft"]
+resourceType: "Application"
+aiInvolvement: "No AI required"
 verification: "confirmed"
 ---
 

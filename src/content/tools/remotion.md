@@ -5,6 +5,8 @@ category: "Media & Creative"
 url: "https://github.com/remotion-dev/remotion"
 repository: "https://github.com/remotion-dev/remotion"
 tags: ["React", "Video rendering", "Motion graphics"]
+resourceType: "Library / Framework"
+aiInvolvement: "No AI required"
 verification: "confirmed"
 ---
 
