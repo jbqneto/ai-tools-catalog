@@ -5,6 +5,8 @@ category: "Open Source Apps"
 url: "https://github.com/DuarteSantos8/openGym"
 repository: "https://github.com/DuarteSantos8/openGym"
 tags: ["Self-hosted", "Fitness", "Workout tracker", "Privacy"]
+resourceType: "Application"
+aiInvolvement: "No AI required"
 verification: "confirmed"
 ---
 

@@ -5,6 +5,8 @@ category: "Data & Documents"
 url: "https://github.com/PaddlePaddle/PaddleOCR"
 repository: "https://github.com/PaddlePaddle/PaddleOCR"
 tags: ["OCR", "Documents", "Extraction"]
+resourceType: "Library / Framework"
+aiInvolvement: "Core AI"
 verification: "confirmed"
 ---
 

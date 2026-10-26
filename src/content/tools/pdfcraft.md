@@ -5,6 +5,8 @@ category: "Data & Documents"
 url: "https://github.com/storytold/pdfcraft"
 repository: "https://github.com/storytold/pdfcraft"
 tags: ["PDF", "Documents", "ArtCraft"]
+resourceType: "Application"
+aiInvolvement: "No AI required"
 verification: "confirmed"
 ---
 

@@ -5,6 +5,8 @@ category: "3D & Interactive"
 url: "https://github.com/pmndrs/react-three-fiber"
 repository: "https://github.com/pmndrs/react-three-fiber"
 tags: ["React", "Three.js", "3D"]
+resourceType: "Library / Framework"
+aiInvolvement: "No AI required"
 verification: "confirmed"
 ---
 

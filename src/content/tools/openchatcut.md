@@ -5,6 +5,8 @@ category: "Media & Creative"
 url: "https://github.com/0xsline/OpenChatCut"
 repository: "https://github.com/0xsline/OpenChatCut"
 tags: ["Video editor", "AI agents", "MCP", "Timeline", "Local-first"]
+resourceType: "Application"
+aiInvolvement: "Optional AI"
 verification: "confirmed"
 ---
 
