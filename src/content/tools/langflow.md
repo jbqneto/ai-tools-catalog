@@ -5,6 +5,8 @@ category: "Agents & Automation"
 url: "https://github.com/langflow-ai/langflow"
 repository: "https://github.com/langflow-ai/langflow"
 tags: ["Visual workflows", "RAG", "MCP"]
+resourceType: "Application"
+aiInvolvement: "Core AI"
 verification: "confirmed"
 ---
 

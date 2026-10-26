@@ -5,6 +5,8 @@ category: "Finance"
 url: "https://github.com/aowang-ai/jev-trade"
 repository: "https://github.com/aowang-ai/jev-trade"
 tags: ["Trading", "Automation", "Hyperliquid"]
+resourceType: "Project / Demo"
+aiInvolvement: "Core AI"
 verification: "confirmed"
 ---
 

@@ -5,6 +5,8 @@ category: "Media & Creative"
 url: "https://github.com/storytold/filmcraft"
 repository: "https://github.com/storytold/filmcraft"
 tags: ["Video editing", "Rust", "ArtCraft"]
+resourceType: "Application"
+aiInvolvement: "No AI required"
 verification: "confirmed"
 ---
 

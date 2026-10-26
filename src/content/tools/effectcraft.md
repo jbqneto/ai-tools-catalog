@@ -5,6 +5,8 @@ category: "Media & Creative"
 url: "https://github.com/storytold/effectcraft"
 repository: "https://github.com/storytold/effectcraft"
 tags: ["Motion graphics", "Animation", "ArtCraft"]
+resourceType: "Application"
+aiInvolvement: "No AI required"
 verification: "confirmed"
 ---
 
