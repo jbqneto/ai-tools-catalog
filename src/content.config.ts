@@ -30,15 +30,14 @@ const tools = defineCollection({
       'Directory / Collection',
       'Learning Resource',
       'Project / Demo',
-      'Unclassified',
-    ]).default('Unclassified'),
+    ]),
     aiInvolvement: z.enum([
       'Core AI',
       'Optional AI',
       'AI ecosystem',
       'No AI required',
       'Unverified',
-    ]).default('Unverified'),
+    ]),
     verification: z.enum(['confirmed', 'unverified']).default('confirmed'),
   }),
 });
