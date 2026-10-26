@@ -12,7 +12,7 @@ Once GitHub Pages is enabled: https://jbqneto.github.io/ai-tools-catalog/
 
 - [Astro](https://astro.build/) static-site generation
 - Markdown files in `src/content/tools/` as the catalog database
-- Client-side search and category filters, with no user tracking
+- Client-side search and independent filters for subject, resource type, and AI involvement, with no user tracking
 - GitHub Actions for pull-request build checks and GitHub Pages deployment
 
 ## Run locally
@@ -47,6 +47,22 @@ The [Prompt Library](https://jbqneto.github.io/ai-tools-catalog/prompts/) is a s
 - Entries can include a source context note and a related verified project link.
 - Templates are independently written in English, with editable placeholders and explicit caveats.
 - Suggestions are welcome through the [Prompt / Workflow Issue template](https://github.com/jbqneto/ai-tools-catalog/issues/new?template=prompt-suggestion.yml).
+
+## What counts as AI?
+
+This is a reference catalog, **not** a list of products all claiming to be AI-powered. Each resource is classified along three separate dimensions:
+
+- **Category** — subject domain such as Media & Creative or Developer Tools.
+- **Resource type** — Application, CLI / Developer Tool, Agent Skill, MCP Server, Library / Framework, Directory / Collection, Learning Resource, or Project / Demo.
+- **AI involvement** — Core AI, Optional AI, AI ecosystem, No AI required, or Unverified.
+
+The UI lets readers filter by all three. For example, GSAP is a library with no required AI functionality; Playwright MCP is an MCP Server in the AI ecosystem. Neither should be mislabeled as an AI model.
+
+For definitions, examples, and our strict duplicate-review process, see [Catalog Taxonomy and Duplicate Policy](docs/CATALOG_TAXONOMY.md).
+
+## Duplicate prevention
+
+Every new submission is compared with current entries by **name, aliases, official URL, and source repository**. Existing entries must be improved rather than duplicated. `npm run validate:catalog` runs automatically before the website build and blocks collisions or missing classifications. Editorial review still resolves renamed projects, forks, and distinct monorepo subprojects.
 
 ## General open-source apps
 
