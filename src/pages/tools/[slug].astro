@@ -21,6 +21,9 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
       <aside class="detail-sidebar" aria-label="Project links and metadata">
         <h2>At a glance</h2>
         <div class="sidebar-item"><span>Category</span><strong>{tool.data.category}</strong></div>
+        <div class="sidebar-item"><span>Resource type</span><strong>{tool.data.resourceType}</strong></div>
+        <div class="sidebar-item"><span>AI involvement</span><strong>{tool.data.aiInvolvement}</strong></div>
+        {tool.data.aliases.length > 0 && <div class="sidebar-item"><span>Also known as</span><strong>{tool.data.aliases.join(', ')}</strong></div>}
         <div class="sidebar-item"><span>Link status</span><strong class={tool.data.verification === 'confirmed' ? 'status-confirmed' : 'status-unverified'}>{tool.data.verification === 'confirmed' ? 'Repository / project identified' : 'Identity needs verification'}</strong></div>
         <div class="sidebar-links"><a href={tool.data.url} target="_blank" rel="noopener noreferrer">Official project ↗</a>{tool.data.repository && tool.data.repository !== tool.data.url && <a href={tool.data.repository} target="_blank" rel="noopener noreferrer">Source repository ↗</a>}</div>
         <a class="suggest-correction" href={'https://github.com/jbqneto/ai-tools-catalog/issues/new?template=correction.yml&title=' + encodeURIComponent('Correction: ' + tool.data.name)}>Suggest a correction ↗</a>

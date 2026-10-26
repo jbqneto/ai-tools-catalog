@@ -5,6 +5,8 @@ category: "Finance"
 url: "https://github.com/Fincept-Corporation/FinceptTerminal"
 repository: "https://github.com/Fincept-Corporation/FinceptTerminal"
 tags: ["Finance", "Market data", "Research", "Open source"]
+resourceType: "Application"
+aiInvolvement: "Optional AI"
 verification: "confirmed"
 ---
 

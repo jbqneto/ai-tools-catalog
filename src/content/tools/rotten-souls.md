@@ -4,6 +4,8 @@ summary: "A web-game reference described in a creator post as being built with a
 category: "3D & Interactive"
 url: "https://rottensouls.com"
 tags: ["Web game", "Three.js", "AI-assisted"]
+resourceType: "Project / Demo"
+aiInvolvement: "No AI required"
 verification: "unverified"
 ---
 

@@ -5,6 +5,8 @@ category: "Media & Creative"
 url: "https://github.com/AgriciDaniel/claude-shorts"
 repository: "https://github.com/AgriciDaniel/claude-shorts"
 tags: ["Claude Code", "Vertical video", "Captions", "FFmpeg"]
+resourceType: "Agent Skill"
+aiInvolvement: "AI ecosystem"
 verification: "confirmed"
 ---
 

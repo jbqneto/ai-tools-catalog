@@ -5,6 +5,8 @@ category: "Agents & Automation"
 url: "https://github.com/AgriciDaniel/claude-ads"
 repository: "https://github.com/AgriciDaniel/claude-ads"
 tags: ["Claude Code", "Marketing", "Advertising", "Audits"]
+resourceType: "Agent Skill"
+aiInvolvement: "AI ecosystem"
 verification: "confirmed"
 ---
 

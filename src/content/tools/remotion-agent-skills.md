@@ -5,6 +5,9 @@ category: "Media & Creative"
 url: "https://github.com/remotion-dev/skills"
 repository: "https://github.com/remotion-dev/skills"
 tags: ["Remotion", "Agent Skills", "React", "Video"]
+resourceType: "Directory / Collection"
+aiInvolvement: "AI ecosystem"
+aliases: ["Remotion Skills"]
 verification: "confirmed"
 ---
 

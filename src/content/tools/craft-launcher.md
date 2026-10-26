@@ -5,6 +5,8 @@ category: "Media & Creative"
 url: "https://github.com/storytold/craft-launcher"
 repository: "https://github.com/storytold/craft-launcher"
 tags: ["Launcher", "ArtCraft", "Desktop"]
+resourceType: "Application"
+aiInvolvement: "No AI required"
 verification: "confirmed"
 ---
 

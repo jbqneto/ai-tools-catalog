@@ -5,6 +5,8 @@ category: "Media & Creative"
 url: "https://github.com/storytold/photocraft"
 repository: "https://github.com/storytold/photocraft"
 tags: ["Image editing", "Rust", "ArtCraft"]
+resourceType: "Application"
+aiInvolvement: "No AI required"
 verification: "confirmed"
 ---
 

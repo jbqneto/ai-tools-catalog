@@ -516,3 +516,13 @@ h1,h2,h3{font-family:'Space Grotesk',sans-serif;line-height:1.15;letter-spacing:
 .prompt-copy{background:#b2abff;color:#121328;border:0;border-radius:8px;padding:7px 12px;font-size:.76rem;font-weight:800;margin-top:20px}
 .prompt-copy:hover{background:#d0caff}
 @media(max-width:700px){.prompt-promo{align-items:start;flex-wrap:wrap;padding:23px}.prompt-promo .secondary-button{width:100%}.prompt-card-grid{grid-template-columns:1fr}.prompt-heading{margin-top:45px}.prompt-detail-heading{margin-top:45px}}
+
+
+/* Faceted catalog taxonomy */
+.taxonomy-filters{display:flex;flex-wrap:wrap;gap:16px;padding-top:18px;margin-top:14px;border-top:1px solid #303b4d}
+.taxonomy-filters label{display:flex;flex-direction:column;gap:8px;flex:1 1 230px;color:#abbad0;font-size:.78rem;font-weight:700;letter-spacing:.02em}
+.taxonomy-filters select{width:100%;min-height:44px;padding:10px 13px;border-radius:10px;border:1px solid #3b4760;color:#e7ebf5;background:#131d30;font:inherit;font-size:.88rem;cursor:pointer}
+.taxonomy-filters select:focus-visible{outline:2px solid #a5a5f9;outline-offset:2px}
+.card-taxonomy{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 13px}
+.card-taxonomy span{font-size:.7rem;border:1px solid #37455d;border-radius:6px;color:#adbce2;padding:5px 8px;background:#192338}
+@media(max-width:630px){.taxonomy-filters{gap:12px}.taxonomy-filters label{flex-basis:100%}}

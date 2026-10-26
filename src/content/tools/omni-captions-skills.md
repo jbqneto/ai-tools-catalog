@@ -5,6 +5,8 @@ category: "Media & Creative"
 url: "https://github.com/lattifai/omni-captions-skills"
 repository: "https://github.com/lattifai/omni-captions-skills"
 tags: ["Subtitles", "Transcription", "Translation", "Agent Skills"]
+resourceType: "Directory / Collection"
+aiInvolvement: "AI ecosystem"
 verification: "confirmed"
 ---
 

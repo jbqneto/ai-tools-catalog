@@ -5,6 +5,8 @@ category: "Agents & Automation"
 url: "https://github.com/jo-inc/camofox-browser"
 repository: "https://github.com/jo-inc/camofox-browser"
 tags: ["Browser automation", "AI agents", "Firefox", "OpenClaw"]
+resourceType: "CLI / Developer Tool"
+aiInvolvement: "AI ecosystem"
 verification: "confirmed"
 ---
 

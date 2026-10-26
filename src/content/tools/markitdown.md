@@ -5,6 +5,9 @@ category: "Data & Documents"
 url: "https://github.com/microsoft/markitdown"
 repository: "https://github.com/microsoft/markitdown"
 tags: ["Markdown", "Documents", "Python"]
+resourceType: "CLI / Developer Tool"
+aiInvolvement: "No AI required"
+aliases: ["MarkItDown"]
 verification: "confirmed"
 ---
 

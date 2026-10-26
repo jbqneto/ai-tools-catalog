@@ -5,6 +5,8 @@ category: "Media & Creative"
 url: "https://github.com/zhouxiaoka/autoclip"
 repository: "https://github.com/zhouxiaoka/autoclip"
 tags: ["Video clipping", "Short-form video", "AI editing", "Desktop", "MCP"]
+resourceType: "Application"
+aiInvolvement: "Core AI"
 verification: "confirmed"
 ---
 

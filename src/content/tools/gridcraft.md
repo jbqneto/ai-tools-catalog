@@ -5,6 +5,8 @@ category: "Data & Documents"
 url: "https://github.com/storytold/gridcraft"
 repository: "https://github.com/storytold/gridcraft"
 tags: ["Spreadsheets", "Data", "ArtCraft"]
+resourceType: "Application"
+aiInvolvement: "No AI required"
 verification: "confirmed"
 ---
 

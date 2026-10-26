@@ -5,6 +5,8 @@ category: "Developer Tools"
 url: "https://context7.com/"
 repository: "https://github.com/upstash/context7"
 tags: ["MCP", "Documentation", "Coding agents", "API reference"]
+resourceType: "MCP Server"
+aiInvolvement: "AI ecosystem"
 verification: "confirmed"
 ---
 

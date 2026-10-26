@@ -5,6 +5,8 @@ category: "Learning & Research"
 url: "https://github.com/devinilabs/claude-watch"
 repository: "https://github.com/devinilabs/claude-watch"
 tags: ["Study notes", "Video", "Transcription", "Claude"]
+resourceType: "Agent Skill"
+aiInvolvement: "AI ecosystem"
 verification: "confirmed"
 ---
 

@@ -5,6 +5,8 @@ category: "Media & Creative"
 url: "https://github.com/tmoroney/auto-subs"
 repository: "https://github.com/tmoroney/auto-subs"
 tags: ["Subtitles", "Speech-to-text", "Offline", "Diarization", "Video editing"]
+resourceType: "Application"
+aiInvolvement: "Core AI"
 verification: "confirmed"
 ---
 

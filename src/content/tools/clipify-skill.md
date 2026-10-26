@@ -5,6 +5,9 @@ category: "Media & Creative"
 url: "https://github.com/louisedesadeleer/clipify"
 repository: "https://github.com/louisedesadeleer/clipify"
 tags: ["Claude Code", "Video clipping", "Captions", "Shorts"]
+resourceType: "Agent Skill"
+aiInvolvement: "AI ecosystem"
+aliases: ["Clipify"]
 verification: "confirmed"
 ---
 

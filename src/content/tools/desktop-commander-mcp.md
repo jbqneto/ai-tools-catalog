@@ -5,6 +5,8 @@ category: "Developer Tools"
 url: "https://github.com/wonderwhy-er/DesktopCommanderMCP"
 repository: "https://github.com/wonderwhy-er/DesktopCommanderMCP"
 tags: ["MCP", "Files", "Terminal"]
+resourceType: "MCP Server"
+aiInvolvement: "AI ecosystem"
 verification: "confirmed"
 ---
 

@@ -5,6 +5,8 @@ category: "Data & Documents"
 url: "https://github.com/storytold/wordcraft"
 repository: "https://github.com/storytold/wordcraft"
 tags: ["Documents", "Editing", "ArtCraft"]
+resourceType: "Application"
+aiInvolvement: "No AI required"
 verification: "confirmed"
 ---
 

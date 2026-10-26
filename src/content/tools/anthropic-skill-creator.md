@@ -5,6 +5,8 @@ category: "Developer Tools"
 url: "https://github.com/anthropics/skills/tree/main/skills/skill-creator"
 repository: "https://github.com/anthropics/skills"
 tags: ["Skills", "Claude", "Evaluation", "Agent workflow"]
+resourceType: "Agent Skill"
+aiInvolvement: "AI ecosystem"
 verification: "confirmed"
 ---
 

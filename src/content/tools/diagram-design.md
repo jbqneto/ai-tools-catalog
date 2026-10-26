@@ -5,6 +5,8 @@ category: "Developer Tools"
 url: "https://github.com/cathrynlavery/diagram-design"
 repository: "https://github.com/cathrynlavery/diagram-design"
 tags: ["Agent skills", "Diagrams", "SVG", "Architecture"]
+resourceType: "Agent Skill"
+aiInvolvement: "AI ecosystem"
 verification: "confirmed"
 ---
 

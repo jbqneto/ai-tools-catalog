@@ -5,6 +5,8 @@ category: "Developer Tools"
 url: "https://github.com/greensock/GSAP"
 repository: "https://github.com/greensock/GSAP"
 tags: ["JavaScript", "Animation", "Motion design"]
+resourceType: "Library / Framework"
+aiInvolvement: "No AI required"
 verification: "confirmed"
 ---
 

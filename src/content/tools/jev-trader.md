@@ -5,6 +5,8 @@ category: "Finance"
 url: "https://github.com/jarrodwatts/jev-trader"
 repository: "https://github.com/jarrodwatts/jev-trader"
 tags: ["Trading", "Agents", "Experiment"]
+resourceType: "Project / Demo"
+aiInvolvement: "Core AI"
 verification: "confirmed"
 ---
 

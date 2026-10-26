@@ -5,6 +5,8 @@ category: "Agents & Automation"
 url: "https://github.com/microsoft/playwright-mcp"
 repository: "https://github.com/microsoft/playwright-mcp"
 tags: ["Browser automation", "MCP", "Testing"]
+resourceType: "MCP Server"
+aiInvolvement: "AI ecosystem"
 verification: "confirmed"
 ---
 

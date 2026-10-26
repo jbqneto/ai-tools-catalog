@@ -5,6 +5,8 @@ category: "Learning & Research"
 url: "https://github.com/anthropics/cwc-workshops"
 repository: "https://github.com/anthropics/cwc-workshops"
 tags: ["Claude Code", "Workshops", "Agents"]
+resourceType: "Learning Resource"
+aiInvolvement: "AI ecosystem"
 verification: "confirmed"
 ---
 

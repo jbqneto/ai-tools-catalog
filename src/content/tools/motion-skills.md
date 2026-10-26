@@ -5,6 +5,8 @@ category: "Media & Creative"
 url: "https://github.com/iart-ai/motion-skills"
 repository: "https://github.com/iart-ai/motion-skills"
 tags: ["Motion design", "Skills", "Animation", "Remotion"]
+resourceType: "Directory / Collection"
+aiInvolvement: "AI ecosystem"
 verification: "confirmed"
 ---
 

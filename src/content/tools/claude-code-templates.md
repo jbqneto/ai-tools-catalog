@@ -5,6 +5,9 @@ category: "Developer Tools"
 url: "https://aitmpl.com/"
 repository: "https://github.com/davila7/claude-code-templates"
 tags: ["Claude Code", "Skills", "Agents", "MCP", "Templates"]
+resourceType: "Directory / Collection"
+aiInvolvement: "AI ecosystem"
+aliases: ["aitmpl.com"]
 verification: "confirmed"
 ---
 

@@ -5,6 +5,8 @@ category: "Developer Tools"
 url: "https://github.com/mattpocock/skills"
 repository: "https://github.com/mattpocock/skills"
 tags: ["Agent skills", "Engineering", "Claude Code", "Codex"]
+resourceType: "Directory / Collection"
+aiInvolvement: "AI ecosystem"
 verification: "confirmed"
 ---
 

@@ -5,6 +5,8 @@ category: "Media & Creative"
 url: "https://github.com/storytold/lightcraft"
 repository: "https://github.com/storytold/lightcraft"
 tags: ["Photography", "RAW", "ArtCraft"]
+resourceType: "Application"
+aiInvolvement: "No AI required"
 verification: "confirmed"
 ---
 

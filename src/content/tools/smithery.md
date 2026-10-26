@@ -5,6 +5,8 @@ category: "Agents & Automation"
 url: "https://www.smithery.ai/"
 repository: "https://github.com/smithery-ai/cli"
 tags: ["MCP", "Integrations", "Agent tools", "Authentication"]
+resourceType: "Directory / Collection"
+aiInvolvement: "AI ecosystem"
 verification: "confirmed"
 ---
 

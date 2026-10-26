@@ -5,6 +5,8 @@ category: "Media & Creative"
 url: "https://github.com/Open-Montage-app/OpenMontage"
 repository: "https://github.com/Open-Montage-app/OpenMontage"
 tags: ["Video production", "Agent workflow", "Remotion", "FFmpeg"]
+resourceType: "Application"
+aiInvolvement: "Core AI"
 verification: "confirmed"
 ---
 

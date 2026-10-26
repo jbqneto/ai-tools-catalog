@@ -5,6 +5,8 @@ category: "Agents & Automation"
 url: "https://github.com/modelcontextprotocol/servers/tree/main/src/sequentialthinking"
 repository: "https://github.com/modelcontextprotocol/servers/tree/main/src/sequentialthinking"
 tags: ["MCP", "Reasoning", "Reference"]
+resourceType: "MCP Server"
+aiInvolvement: "AI ecosystem"
 verification: "confirmed"
 ---
 

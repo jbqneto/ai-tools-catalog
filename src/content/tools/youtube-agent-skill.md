@@ -5,6 +5,8 @@ category: "Media & Creative"
 url: "https://github.com/Jakeschincariol/youtube-agent-skill"
 repository: "https://github.com/Jakeschincariol/youtube-agent-skill"
 tags: ["YouTube", "Claude Code", "Writing", "Analytics"]
+resourceType: "Agent Skill"
+aiInvolvement: "AI ecosystem"
 verification: "confirmed"
 ---
 

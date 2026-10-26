@@ -5,6 +5,8 @@ category: "Media & Creative"
 url: "https://github.com/Barty-Bart/motion-graphics"
 repository: "https://github.com/Barty-Bart/motion-graphics"
 tags: ["Claude Code", "B-roll", "Motion graphics", "Timeline"]
+resourceType: "Agent Skill"
+aiInvolvement: "AI ecosystem"
 verification: "confirmed"
 ---
 

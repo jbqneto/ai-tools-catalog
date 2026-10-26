@@ -5,6 +5,8 @@ category: "Media & Creative"
 url: "https://github.com/heygen-com/hyperframes"
 repository: "https://github.com/heygen-com/hyperframes"
 tags: ["HTML", "GSAP", "Video rendering", "FFmpeg"]
+resourceType: "Library / Framework"
+aiInvolvement: "No AI required"
 verification: "confirmed"
 ---
 
