@@ -6,13 +6,19 @@ Thank you for helping keep this directory useful.
 
 Open a [tool suggestion](https://github.com/jbqneto/ai-tools-catalog/issues/new?template=tool-suggestion.yml). Include the project's official homepage or repository, what it does, and why it belongs in the catalog.
 
+## Check for duplicates first
+
+Before submitting a new entry, search the directory and `src/content/tools/` by **project name, aliases, canonical website, and repository owner/name**. If the project already exists, edit that entry instead of creating another.
+
+Review [Catalog Taxonomy and Duplicate Policy](docs/CATALOG_TAXONOMY.md) for classification definitions, how to handle agent skills versus tools, and how to document uncertain identities. A social-media carousel is a discovery source, **not** proof of repository identity, feature counts, or profitability.
+
 ## Add a Markdown entry
 
 1. Fork this repository and create a branch.
 2. Create `src/content/tools/tool-slug.md` using lowercase ASCII letters, numbers, and hyphens.
 3. Use the frontmatter schema shown below.
 4. Keep the body descriptive and fact-based. Explain use cases, limitations, and caveats.
-5. Run `npm install && npm run build` to validate the catalog.
+5. Run `npm install && npm run validate:catalog && npm run build` to validate identities, classifications, and the Astro build.
 6. Open a Pull Request. A maintainer reviews before merge.
 
 Example:
@@ -22,8 +28,11 @@ Example:
 name: "Example Tool"
 summary: "An accurate description of what this project does, without unverifiable marketing claims."
 category: "Developer Tools"
+resourceType: "CLI / Developer Tool"
+aiInvolvement: "No AI required"
 url: "https://example.org"
 repository: "https://github.com/example/example"
+aliases: ["Example CLI"]
 tags: ["CLI", "Open source"]
 verification: "confirmed"
 ---
@@ -32,6 +41,27 @@ Example Tool provides a useful workflow for developers.
 
 Refer to the official documentation for supported platforms and licensing details.
 ```
+
+**Required fields:** `resourceType` and `aiInvolvement` must be explicitly present for every project. No default assumptions are accepted.
+
+Accepted resource types:
+- Application
+- CLI / Developer Tool
+- Agent Skill
+- MCP Server
+- Library / Framework
+- Directory / Collection
+- Learning Resource
+- Project / Demo
+
+Accepted AI involvement:
+- Core AI
+- Optional AI
+- AI ecosystem
+- No AI required
+- Unverified
+
+Definitions and examples are documented in [the taxonomy guide](docs/CATALOG_TAXONOMY.md). Keep `aliases` as an optional JSON-style list of quoted strings.
 
 Accepted categories:
 - Agents & Automation
@@ -84,7 +114,7 @@ Supported `category` values: `App Promotion`, `Motion Design`, `Video Production
 
 - No rankings, star ratings, affiliate links, or sponsored placements.
 - Official project links are strongly preferred. Never invent a URL.
-- Avoid duplicated entries, personal setup notes, confidential information, and unverifiable monetary claims.
+- Avoid duplicated entries (the validator also blocks exact identity matches), personal setup notes, confidential information, and unverifiable monetary claims.
 - Do not claim a tool is safe, profitable, free, open-source, or production-ready without checking its current documentation.
 - Do not upload screenshots or copyrighted material without permission.
 - Respect maintainers' licenses and trademarks.
