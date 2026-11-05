@@ -20,6 +20,12 @@ const tools = defineCollection({
     url: z.string().url(),
     repository: z.string().url().optional(),
     tags: z.array(z.string()).default([]),
+    // Optional editorial signals for agents evaluating user-specific use cases.
+    // An empty list means "not yet assessed", not "no requirements/risks".
+    useCases: z.array(z.string()).default([]),
+    capabilities: z.array(z.string()).default([]),
+    requirements: z.array(z.string()).default([]),
+    limitations: z.array(z.string()).default([]),
     aliases: z.array(z.string()).default([]),
     resourceType: z.enum([
       'Application',
