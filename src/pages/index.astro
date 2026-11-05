@@ -1,11 +1,26 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import { catalogUrl } from '../lib/agent-catalog';
 const tools = (await getCollection('tools')).sort((a, b) => a.data.name.localeCompare(b.data.name));
 const categories = [...new Set(tools.map((tool) => tool.data.category))].sort();
 const resourceTypes = [...new Set(tools.map((tool) => tool.data.resourceType))].sort();
 const aiRelations = [...new Set(tools.map((tool) => tool.data.aiInvolvement))].sort();
 const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : import.meta.env.BASE_URL + '/';
+const datasetMetadata = {
+  '@context': 'https://schema.org',
+  '@type': 'Dataset',
+  name: 'AI Tools Catalog',
+  description: 'Public, unranked reference data about AI tools, developer applications, libraries, MCP servers, and agent skills.',
+  url: catalogUrl(),
+  isAccessibleForFree: true,
+  license: 'https://github.com/jbqneto/ai-tools-catalog/blob/main/LICENSE',
+  keywords: ['AI tools', 'agent skills', 'MCP servers', 'developer tools', 'open-source projects'],
+  distribution: [
+    { '@type': 'DataDownload', encodingFormat: 'application/json', contentUrl: catalogUrl('api/catalog.json') },
+    { '@type': 'DataDownload', encodingFormat: 'application/json', contentUrl: catalogUrl('api/prompts.json') },
+  ],
+};
 const categorySymbols = {
   'Agents & Automation': '◈',
   'Developer Tools': '⌘',
@@ -18,7 +33,7 @@ const categorySymbols = {
   'Open Source Apps': '▦',
 };
 ---
-<BaseLayout title="AI Tools Catalog — Useful tools, openly collected" description="A free, searchable directory of AI tools and related open-source projects. Community-maintained, without rankings or sponsored placements.">
+<BaseLayout title="AI Tools Catalog — Useful tools, openly collected" description="A free, searchable directory of AI tools and related open-source projects. Community-maintained, without rankings or sponsored placements." structuredData={datasetMetadata}>
   <section class="hero container">
     <div class="hero-glow" aria-hidden="true"></div>
     <div class="hero-layout">

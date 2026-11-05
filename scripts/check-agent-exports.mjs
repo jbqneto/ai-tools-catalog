@@ -32,7 +32,7 @@ for (const tool of index.resources) {
   assert.ok(Array.isArray(tool.useCases) && Array.isArray(tool.limitations), 'missing research arrays');
   const detail = await readJson(staticPathFromUrl(tool.detailsJsonUrl));
   assert.equal(detail.id, tool.id, 'resource mismatch');
-  assert.ok(typeof detail.detailsMarkdown === 'string', 'missing full description');
+  assert.ok(typeof detail.detailsMarkdown === 'string' && detail.detailsMarkdown.trim().length > 0, 'missing full description');
   assert.ok(detail.officialUrl, 'missing official project link');
   const profile = staticPathFromUrl(tool.profileUrl);
   await stat(join(dist, profile, 'index.html'));
@@ -43,7 +43,7 @@ assert.equal(prompts.counts.references, prompts.resources.length);
 for (const item of prompts.resources) {
   const detail = await readJson(staticPathFromUrl(item.detailsJsonUrl));
   assert.equal(detail.id, item.id);
-  assert.ok(typeof detail.detailsMarkdown === 'string');
+  assert.ok(typeof detail.detailsMarkdown === 'string' && detail.detailsMarkdown.trim().length > 0);
 }
 const llms = await readFile(join(dist, 'llms.txt'), 'utf8');
 assert.ok(llms.includes(index.llmsTxtUrl), 'llms text should expose its own discovery URL');

@@ -7,9 +7,19 @@ export async function getStaticPaths() {
 }
 const { tool } = Astro.props;
 const { Content } = await render(tool);
+const profileMetadata = {
+  '@context': 'https://schema.org',
+  '@type': 'CreativeWork',
+  name: tool.data.name + ' — AI Tools Catalog profile',
+  description: tool.data.summary,
+  url: new URL('tools/' + encodeURIComponent(tool.id) + '/', 'https://jbqneto.github.io/ai-tools-catalog/').href,
+  about: tool.data.category,
+  keywords: tool.data.tags.join(', '),
+  isBasedOn: tool.data.url,
+};
 const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : import.meta.env.BASE_URL + '/';
 ---
-<BaseLayout title={tool.data.name + ' — AI Tools Catalog'} description={tool.data.summary}>
+<BaseLayout title={tool.data.name + ' — AI Tools Catalog'} description={tool.data.summary} structuredData={profileMetadata}>
   <section class="detail-page container">
     <nav class="breadcrumbs" aria-label="Breadcrumb"><a href={base}>Directory</a><span>/</span><span>{tool.data.category}</span><span>/</span><span aria-current="page">{tool.data.name}</span></nav>
     <div class="detail-heading">
