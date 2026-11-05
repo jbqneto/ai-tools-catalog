@@ -1,0 +1,81 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { catalogUrl } from '../lib/agent-catalog';
+const prompt = [
+  'Analyze the public AI Tools Catalog for my specific use case.',
+  'Start at: ' + catalogUrl('llms.txt'),
+  'Machine-readable resource index: ' + catalogUrl('api/catalog.json'),
+  '',
+  'MY CONTEXT',
+  '- Goal / use case: [DESCRIBE THE TASK]',
+  '- Current tools and technology stack: [STACK / EXISTING SOFTWARE]',
+  '- Operating system, hosting, and language requirements: [CONSTRAINTS]',
+  '- Budget, data privacy, licensing, and commercial usage: [CONSTRAINTS]',
+  '- Skills, systems, and tools I do not want to replace: [OPTIONAL]',
+  '',
+  'METHOD',
+  '1. Read the index. Shortlist candidates from the complete catalog, not just the home page.',
+  '2. Read each shortlisted detailsJsonUrl. Separate Applications, Libraries, MCP servers, and Agent Skills.',
+  '3. Check official sources for decisive claims, license restrictions, requirements, maintenance, and costs.',
+  '4. Compare each candidate to my existing stack; flag redundancy and interoperability issues.',
+  '5. Rank only your RECOMMENDATIONS for my context (the source catalog itself is unranked).',
+  '6. Give me: best fit, why it helps, prerequisites, costs/risks, and a small reversible proof-of-concept.',
+  '7. Identify which tools are not worth adopting, and explain why.',
+  '',
+  'Do not invent benchmarks or pricing. Do not install or execute anything without my approval.',
+].join('\n');
+---
+<BaseLayout title="For AI Agents — AI Tools Catalog" description="Use this public catalog with Claude, Codex, and other agents through structured JSON feeds and an llms.txt discovery file.">
+  <section class="detail-page container">
+    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href={catalogUrl()}>Directory</a><span>/</span><span>For AI agents</span></nav>
+    <div class="detail-heading"><div>
+      <span class="eyebrow">MACHINE-READABLE · PUBLIC · STATIC</span>
+      <h1>Make your AI assistant <span class="gradient-text">tool-aware.</span></h1>
+      <p class="detail-summary">Claude, Codex, or any HTTP-capable agent can inspect the complete catalog, compare candidates against your actual requirements, and suggest a small practical experiment. No login or API key is needed to read these public feeds.</p>
+    </div></div>
+    <div class="detail-layout">
+      <article class="detail-article prompt-prose">
+        <h2>Start with your use case</h2>
+        <p>Copy this prompt into your agent, replace the placeholders with your context, and provide the URLs. The agent should retrieve the index first, then inspect individual profiles only when relevant.</p>
+        <button type="button" id="copy-agent-prompt" class="secondary-button">Copy analysis prompt</button>
+        <pre id="agent-prompt" class="agent-prompt">{prompt}</pre>
+        <h2>How the feed works</h2>
+        <ol>
+          <li><strong>Discover:</strong> read the <a href={catalogUrl('llms.txt')}>llms.txt guide</a>.</li>
+          <li><strong>Filter:</strong> request <a href={catalogUrl('api/catalog.json')}>catalog.json</a>. Search by names, types, AI involvement, tags, and use cases.</li>
+          <li><strong>Inspect:</strong> open a candidate's <code>detailsJsonUrl</code> to read its full editorial profile.</li>
+          <li><strong>Evaluate:</strong> check official sources, integration effort, data handling, licenses, price, maintenance, and overlap.</li>
+          <li><strong>Recommend:</strong> return a shortlist with explicit uncertainties and a test plan. No blind installs.</li>
+        </ol>
+        <h2>What this does not do</h2>
+        <p>The catalog itself does not know your private projects, analyze your repository, run models, or recommend tools automatically. It is an openly readable source of structured data; your agent performs the context-aware evaluation. The repository verification status confirms source identity, <strong>not</strong> security, license suitability, or production readiness.</p>
+      </article>
+      <aside class="detail-sidebar" aria-label="Agent data endpoints">
+        <h2>Public endpoints</h2>
+        <div class="sidebar-links">
+          <a href={catalogUrl('llms.txt')}>llms.txt ↗</a>
+          <a href={catalogUrl('api/catalog.json')}>Catalog JSON ↗</a>
+          <a href={catalogUrl('api/prompts.json')}>Prompt & workflow JSON ↗</a>
+          <a href={catalogUrl('sitemap.xml')}>XML sitemap ↗</a>
+          <a href="https://github.com/jbqneto/ai-tools-catalog/blob/main/docs/AGENT_ACCESS.md">Usage & schema documentation ↗</a>
+        </div>
+        <div class="sidebar-item"><span>Authentication</span><strong>Not required</strong></div>
+        <div class="sidebar-item"><span>Format</span><strong>JSON + plain text</strong></div>
+        <div class="sidebar-item"><span>Personalization</span><strong>Performed by your own agent</strong></div>
+      </aside>
+    </div>
+  </section>
+  <script>
+    document.querySelector<HTMLButtonElement>('#copy-agent-prompt')?.addEventListener('click', async (event) => {
+      const button = event.currentTarget as HTMLButtonElement;
+      const content = document.querySelector<HTMLElement>('#agent-prompt')?.textContent;
+      if (!content) return;
+      try {
+        await navigator.clipboard.writeText(content);
+        button.textContent = 'Copied';
+      } catch {
+        button.textContent = 'Select the prompt below to copy';
+      }
+    });
+  </script>
+</BaseLayout>
