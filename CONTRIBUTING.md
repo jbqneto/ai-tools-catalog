@@ -34,6 +34,10 @@ url: "https://example.org"
 repository: "https://github.com/example/example"
 aliases: ["Example CLI"]
 tags: ["CLI", "Open source"]
+useCases: ["Extract records for a local, authorized report"]
+capabilities: ["Exports a structured data file"]
+requirements: ["Supported Node.js runtime"]
+limitations: ["No built-in cloud sync"]
 verification: "confirmed"
 ---
 
@@ -41,6 +45,8 @@ Example Tool provides a useful workflow for developers.
 
 Refer to the official documentation for supported platforms and licensing details.
 ```
+
+**Agent readability:** Add `useCases`, `capabilities`, `requirements`, and `limitations` when you can support these statements with the project's own documentation. Each is an optional list of concrete strings. Leave it empty if unknown rather than guessing. The static JSON feeds derive directly from these entries. See [Agent access and schema](docs/AGENT_ACCESS.md).
 
 **Required fields:** `resourceType` and `aiInvolvement` must be explicitly present for every project. No default assumptions are accepted.
 
