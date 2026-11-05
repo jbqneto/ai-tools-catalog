@@ -6,7 +6,7 @@ A free, public, community-maintained collection of AI tools and related open-sou
 
 ## Website
 
-Once GitHub Pages is enabled: https://jbqneto.github.io/ai-tools-catalog/
+Published website: https://jbqneto.github.io/ai-tools-catalog/
 
 ## Tech stack
 
@@ -36,6 +36,22 @@ Build the static site with `npm run build`.
 4. Follow deployment progress under **Actions**.
 
 The workflow builds the website and publishes `dist/`. Every subsequent push to `main` redeploys automatically.
+
+## Use the catalog with Claude, Codex, or another AI agent
+
+The catalog publishes **static machine-readable feeds** so an agent can compare projects with the user's actual use case, stack, budget, licensing, and data-handling constraints. It is **not** a hosted AI recommendation service and does not access personal information.
+
+- [For AI agents — ready-to-copy prompt](https://jbqneto.github.io/ai-tools-catalog/for-agents/)
+- [llms.txt — discovery and agent instructions](https://jbqneto.github.io/ai-tools-catalog/llms.txt)
+- [Catalog JSON — compact index](https://jbqneto.github.io/ai-tools-catalog/api/catalog.json)
+- [Prompts & workflows JSON](https://jbqneto.github.io/ai-tools-catalog/api/prompts.json)
+- [Technical guide and JSON field semantics](docs/AGENT_ACCESS.md)
+
+Each catalog record links to a **detail JSON profile** with full Markdown. Agents should read the compact index first, then inspect only promising resources, verify significant claims against official sources, and recommend small reversible tests.
+
+Structured metadata such as `useCases`, `capabilities`, `requirements`, and `limitations` is optional. If empty, it means **not assessed**, not "no limitations." These machine-readable exports are generated from existing Markdown entries, with no separate data to maintain.
+
+`npm run build` validates duplicate identities, builds Astro, and checks the generated agent exports.
 
 ## Prompts & Workflows
 
