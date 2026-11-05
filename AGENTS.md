@@ -4,8 +4,8 @@ This repository is an unranked, community-maintained resource directory built us
 
 ## Source of truth
 
-- Every resource is in exactly one file: \`src/content/tools/{slug}.md\`.
-- Reusable prompt and workflow references are in \`src/content/prompts/{slug}.md\`.
+- Every resource is in exactly one file: `src/content/tools/{slug}.md`.
+- Reusable prompt and workflow references are in `src/content/prompts/{slug}.md`.
 - Do **not** create hardcoded secondary registries or copy descriptions into JSON files.
 - Public JSON endpoints are generated from the same collections at build time.
 - Keep prose and metadata in **English**, including the user-facing site.
@@ -18,8 +18,8 @@ This repository is an unranked, community-maintained resource directory built us
 4. Distinguish applications, libraries, MCP servers, agent skills, and collections.
 5. Distinguish AI model dependency from projects built *with* AI.
 6. Write a concise factual description and explicit limitations. Do not copy social-post revenue claims.
-7. Include structured \`useCases\`, \`capabilities\`, \`requirements\`, and \`limitations\` only when evidence supports them. An empty list means "not assessed."
-8. Run \`npm run build\`; it validates duplicate identities and generated agent feeds.
+7. Include structured `useCases`, `capabilities`, `requirements`, and `limitations` only when evidence supports them. An empty list means "not assessed."
+8. Run `npm run build`; it validates duplicate identities and generated agent feeds.
 
 ## Agent-facing API contracts
 
@@ -30,7 +30,7 @@ Agents may **recommend** from catalog descriptions after reading public data, bu
 ## Working practices
 
 - Prefer small, reviewable PRs.
-- Preserve GitHub Pages base path \`/ai-tools-catalog/\` in links.
-- Keep \`api/catalog.json\` compact; full Markdown belongs in \`api/tools/{slug}.json\`.
+- Preserve GitHub Pages base path `/ai-tools-catalog/` in links.
+- Keep `api/catalog.json` compact; full Markdown belongs in `api/tools/{slug}.json`.
 - Do not build user tracking, recommendation rankings, paid placements, or secret-backed server APIs.
 - Don't merge or deploy without explicitly requested approval.
