@@ -12,6 +12,7 @@ export const GET: APIRoute = async () => {
     '',
     '## Machine-readable data (public GET; no API key)',
     '',
+    '- [llms.txt discovery](' + catalogUrl('llms.txt') + '): this file and its instructions.',
     '- [Catalog JSON](' + catalogUrl('api/catalog.json') + '): structured index of ' + tools.length + ' resources with types, tags, summaries, use-case notes, risks, and links to individual JSON profiles.',
     '- [Prompts and workflows JSON](' + catalogUrl('api/prompts.json') + '): ' + prompts.length + ' reference templates, separate from software.',
     '- [Agent guide](' + catalogUrl('for-agents/') + '): suggested retrieval and comparison methodology plus a reusable prompt.',
