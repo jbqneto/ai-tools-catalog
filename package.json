@@ -8,7 +8,9 @@
     "build": "astro build",
     "preview": "astro preview",
     "validate:catalog": "node scripts/validate-catalog.mjs",
-    "prebuild": "npm run validate:catalog"
+    "prebuild": "npm run validate:catalog",
+    "validate:agent-feed": "node scripts/check-agent-exports.mjs",
+    "postbuild": "npm run validate:agent-feed"
   },
   "dependencies": {
     "astro": "^7.4.0"

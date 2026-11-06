@@ -526,3 +526,6 @@ h1,h2,h3{font-family:'Space Grotesk',sans-serif;line-height:1.15;letter-spacing:
 .card-taxonomy{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 13px}
 .card-taxonomy span{font-size:.7rem;border:1px solid #37455d;border-radius:6px;color:#adbce2;padding:5px 8px;background:#192338}
 @media(max-width:630px){.taxonomy-filters{gap:12px}.taxonomy-filters label{flex-basis:100%}}
+
+/* Agent access page */
+.agent-prompt{white-space:pre-wrap;overflow-wrap:anywhere;max-width:100%;border:1px solid #34405a;border-radius:12px;padding:20px;line-height:1.55;font-size:.83rem;background:#0d1525;overflow-x:auto}
