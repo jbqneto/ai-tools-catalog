@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { resourceSections, inResourceSection } from '../lib/resource-sections';
+export function getStaticPaths() {
+  return resourceSections.map(section => ({ params: { section: section.slug }, props: { section } }));
+}
+const { section } = Astro.props;
+const entries = (await getCollection('tools'))
+  .filter(entry => inResourceSection(entry.data.resourceType, section))
+  .sort((a,b) => a.data.name.localeCompare(b.data.name));
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : import.meta.env.BASE_URL + '/';
+---
+<BaseLayout title={section.label + ' — AI Tools Catalog'} description={section.description}>
+  <section class="resource-directory container">
+    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href={base}>All resources</a><span>/</span><span aria-current="page">{section.label}</span></nav>
+    <div class="resource-directory-heading">
+      <span class="eyebrow"><span class="signal-dot"></span> BROWSE BY RESOURCE TYPE</span>
+      <h1>{section.title}</h1><p>{section.description}</p>
+    </div>
+    <nav class="resource-directory-tabs" aria-label="Resource collections">
+      <a href={base}>All resources</a>
+      {resourceSections.map(s => <a href={base + s.slug + '/'} aria-current={s.slug === section.slug ? 'page' : undefined}>{s.label}</a>)}
+      <a href={base + 'prompts/'}>Prompts &amp; Workflows</a>
+    </nav>
+    <div class="filter-panel">
+      <label class="sr-only" for="resource-search">Search {section.label}</label>
+      <div class="search-box"><input id="resource-search" type="search" placeholder={'Search ' + section.label.toLowerCase() + ' by name, tag or use case...'} autocomplete="off"/></div>
+    </div>
+    <p class="directory-meta" id="resource-count" aria-live="polite">{entries.length} entries · Alphabetical, not ranked</p>
+    <div class="tools-grid" id="resource-grid">
+      {entries.map(item => <article class="tool-card" data-search={[item.data.name, item.data.summary, ...item.data.aliases, ...item.data.tags, ...item.data.useCases].join(' ').toLowerCase()}>
+        <div class="card-top"><div class="tool-icon" aria-hidden="true">◇</div><span class="card-category">{item.data.category}</span><a class="card-external" href={item.data.url} target="_blank" rel="noopener noreferrer" aria-label={'Official site for ' + item.data.name}>↗</a></div>
+        <a class="tool-name" href={base + 'tools/' + item.id + '/'}>{item.data.name}</a>
+        <p class="tool-summary">{item.data.summary}</p>
+        <div class="card-taxonomy"><span>{item.data.resourceType}</span><span>{item.data.aiInvolvement}</span></div>
+        <div class="card-bottom"><div class="tag-list">{item.data.tags.slice(0,3).map(tag => <span class="tag">{tag}</span>)}</div><a class="card-more" href={base + 'tools/' + item.id + '/'}>Details →</a></div>
+      </article>)}
+    </div>
+    <div class="empty-state" id="resource-empty" hidden><h2>No matches</h2><p>Try a different search.</p></div>
+    <p class="resource-directory-note">Skill collections and MCP directories retain their original resource types, and can be found in <a href={base}>All resources</a>. They are not miscounted as skills or MCP servers.</p>
+  </section>
+  <script>
+    const search = document.querySelector<HTMLInputElement>('#resource-search');
+    const cards = [...document.querySelectorAll<HTMLElement>('#resource-grid .tool-card')];
+    const items = cards.map(el => ({ el, q: (el.dataset.search || '').normalize('NFKD').replace(/[\u0300-\u036f]/g,'').toLowerCase() }));
+    const count = document.querySelector<HTMLElement>('#resource-count');
+    const empty = document.querySelector<HTMLElement>('#resource-empty');
+    search?.addEventListener('input', () => {
+      const q = search.value.normalize('NFKD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();
+      let shown=0;
+      for (const item of items) { const ok = !q || item.q.includes(q); item.el.hidden=!ok; if(ok)shown++; }
+      if(count)count.textContent = shown + ' of ' + items.length + ' entries · Alphabetical, not ranked';
+      if(empty)empty.hidden = shown!==0;
+    });
+  </script>
+</BaseLayout>

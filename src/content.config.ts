@@ -54,7 +54,7 @@ const prompts = defineCollection({
     title: z.string().min(3),
     summary: z.string().min(25).max(240),
     kind: z.enum(['prompt', 'workflow']),
-    category: z.enum(['App Promotion', 'Motion Design', 'Video Production', 'Video Editing']),
+    category: z.enum(['App Promotion', 'Motion Design', 'Video Production', 'Video Editing', 'Agent Skills']),
     tags: z.array(z.string()).default([]),
     sourceNote: z.string().optional(),
     relatedUrl: z.string().url().optional(),
