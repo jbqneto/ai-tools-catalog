@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
 import { catalogUrl } from '../lib/agent-catalog';
+import { resourceSections } from '../lib/resource-sections';
 
 export const GET: APIRoute = async () => {
   const tools = await getCollection('tools');
@@ -14,6 +15,7 @@ export const GET: APIRoute = async () => {
     '',
     '- [llms.txt discovery](' + catalogUrl('llms.txt') + '): this file and its instructions.',
     '- [Catalog JSON](' + catalogUrl('api/catalog.json') + '): structured index of ' + tools.length + ' resources with types, tags, summaries, use-case notes, risks, and links to individual JSON profiles.',
+    ...resourceSections.map(section => '- [' + section.label + ' JSON](' + catalogUrl('api/resources/' + section.slug + '.json') + '): a strict resourceType subset of the canonical catalog.'),
     '- [Prompts and workflows JSON](' + catalogUrl('api/prompts.json') + '): ' + prompts.length + ' reference templates, separate from software.',
     '- [Agent guide](' + catalogUrl('for-agents/') + '): suggested retrieval and comparison methodology plus a reusable prompt.',
     '- [Human-readable catalog](' + catalogUrl() + '): search and filters.',
@@ -31,6 +33,8 @@ export const GET: APIRoute = async () => {
     '## Interpretation and safety',
     '',
     '- The catalog is alphabetically ordered. It is not a ranking or paid-placement list.',
+    '- Typed feeds are projections of a single canonical catalog, never duplicate tool records.',
+    '- Agent Skill collections and MCP registries are Directory / Collection and do not become automatically installable Skills or MCP Servers.',
     '- An Agent Skill, MCP Server, and Application are different types of resource.',
     '- AI involvement indicates whether the project requires AI, optionally uses it, supports AI workflows, or does not need AI.',
     '- "confirmed" means an identity or source link was identified; it is NOT an independent security or quality audit.',

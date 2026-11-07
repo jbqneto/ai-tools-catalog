@@ -96,3 +96,9 @@ The `verification` field refers to identity/link verification, **not** a securit
 ## Prompt Library remains distinct
 
 Reusable prompt text and step-by-step workflows belong in `src/content/prompts/`. These are not automatically software projects. A prompt may link to an actual tool entry, but it should not duplicate that tool.
+
+## First-class website and agent browse sections
+
+The navigation groups in `src/lib/resource-sections.ts` map canonical resource types into Apps & Tools, Libraries, Agent Skills and MCP Servers; Prompts & Workflows remain in the independent `prompts` collection. These **are not new records or rewritten subject categories**. Reusable skills, libraries and MCP servers can be AI-powered, AI-optional or non-inference integrations; the `aiInvolvement` field still provides that independent dimension.
+
+A Directory / Collection containing skills is not itself a single Agent Skill; likewise, an MCP directory is not an MCP Server. They stay visible in the full index. Creative prompt styles are merged when they overlap rather than cloned into extra entries.

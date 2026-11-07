@@ -111,3 +111,17 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md). You can suggest a tool using a G
 ## License
 
 This repository's original code and catalog descriptions are available under the [MIT License](LICENSE). Trademarks, linked websites, and third-party software retain their own licenses.
+
+## Navigation and typed public indexes
+
+The following pages are **views over one canonical set of Markdown records**. They do not duplicate entries.
+
+| Section | Page | JSON index |
+| --- | --- | --- |
+| Apps & Tools | [Apps](https://jbqneto.github.io/ai-tools-catalog/apps/) | [JSON](https://jbqneto.github.io/ai-tools-catalog/api/resources/apps.json) |
+| Libraries & Frameworks | [Libraries](https://jbqneto.github.io/ai-tools-catalog/libraries/) | [JSON](https://jbqneto.github.io/ai-tools-catalog/api/resources/libraries.json) |
+| Agent Skills | [Skills](https://jbqneto.github.io/ai-tools-catalog/skills/) | [JSON](https://jbqneto.github.io/ai-tools-catalog/api/resources/skills.json) |
+| MCP Servers | [MCPs](https://jbqneto.github.io/ai-tools-catalog/mcps/) | [JSON](https://jbqneto.github.io/ai-tools-catalog/api/resources/mcps.json) |
+| Prompts & Workflows | [Prompts](https://jbqneto.github.io/ai-tools-catalog/prompts/) | [JSON](https://jbqneto.github.io/ai-tools-catalog/api/prompts.json) |
+
+The all-resource `api/catalog.json` advertises these subsets through its additive `sections` property. Skill directories and MCP registries stay classified as directories, not installable individual Skills or MCP Servers. AI involvement is an independent facet, not a synonym for the item type.

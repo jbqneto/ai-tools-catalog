@@ -105,3 +105,15 @@ All machine-readable files are generated at build time from Astro's existing Mar
 - The Pull Request CI and GitHub Pages build run these checks before the site is deployed.
 
 For source changes, keep the published schema backward compatible or bump `schemaVersion` when removing or renaming public fields.
+
+## Typed resource feeds
+
+For a smaller agent context window, the main index advertises `sections` with `id`, `resourceTypes`, `pageUrl`, and `indexUrl`. These public JSON endpoints are strict subsets of the canonical resource index:
+
+- `api/resources/apps.json` — Application, CLI / Developer Tool, Project / Demo
+- `api/resources/libraries.json` — Library / Framework
+- `api/resources/skills.json` — Agent Skill
+- `api/resources/mcps.json` — MCP Server
+- `api/prompts.json` — Separate reference-prompt collection
+
+These are **projections, not additional entries**; IDs and detail profile URLs stay consistent with the full index. Directories of skills and registries of MCP servers remain Directory / Collection. Never assume a project is installable from its tags or GitHub location alone.

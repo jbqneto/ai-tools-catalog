@@ -37,6 +37,19 @@ for (const tool of index.resources) {
   const profile = staticPathFromUrl(tool.profileUrl);
   await stat(join(dist, profile, 'index.html'));
 }
+assert.ok(Array.isArray(index.sections), 'catalog lacks section links');
+for (const section of index.sections.filter(item => item.id !== 'prompts')) {
+  const subset = await readJson('api/resources/' + section.id + '.json');
+  assert.equal(subset.kind, 'unranked-resource-section');
+  assert.equal(subset.counts.resources, subset.resources.length);
+  assert.equal(section.count, subset.resources.length);
+  assert.deepEqual(
+    subset.resources.map(item => item.id).sort(),
+    index.resources.filter(item => section.resourceTypes.includes(item.resourceType)).map(item => item.id).sort(),
+    'typed view must use canonical resource records'
+  );
+  await stat(join(dist, section.id, 'index.html'));
+}
 const prompts = await readJson('api/prompts.json');
 assert.equal(prompts.schemaVersion, index.schemaVersion);
 assert.equal(prompts.counts.references, prompts.resources.length);
@@ -49,9 +62,15 @@ const llms = await readFile(join(dist, 'llms.txt'), 'utf8');
 assert.ok(llms.includes(index.llmsTxtUrl), 'llms text should expose its own discovery URL');
 assert.ok(llms.includes(base + 'api/catalog.json'), 'llms missing JSON catalog link');
 assert.ok(llms.includes(base + 'api/prompts.json'), 'llms missing prompts link');
+for (const section of index.sections.filter(item => item.id !== 'prompts')) {
+  assert.ok(llms.includes(section.indexUrl), 'llms missing typed index: ' + section.id);
+}
 const sitemap = await readFile(join(dist, 'sitemap.xml'), 'utf8');
 assert.ok(sitemap.includes(base + 'for-agents/'), 'sitemap lacks agent page');
 assert.ok(sitemap.includes(base + 'tools/'), 'sitemap lacks tool pages');
+for (const section of index.sections.filter(item => item.id !== 'prompts')) {
+  assert.ok(sitemap.includes(base + section.id + '/'), 'missing sitemap page ' + section.id);
+}
 await stat(join(dist, 'for-agents', 'index.html'));
 console.log('Validated ' + ids.size + ' agent-readable tools and ' +
   prompts.resources.length + ' prompt/workflow profiles, discovery and sitemap.');
