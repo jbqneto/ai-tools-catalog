@@ -10,7 +10,7 @@ relatedUrl: "https://github.com/heygen-com/hyperframes"
 
 ## Why these projects are separate
 
-The projects in this guide are **not interchangeable**. Some are animation engines, some are instructions for coding agents, some analyze existing footage, and others supply broader video-production workflows. A skill package is not automatically a self-contained application.
+The projects in this guide are **not interchangeable**. Some are animation engines, some are instructions for coding agents, some analyze existing footage, and others supply broader video-production workflows. A similarly named skill from a different maintainer must not be treated as an alias without verifying its repository identity. A skill package is not automatically a self-contained application.
 
 This is a reference list, **not a ranking**.
 
@@ -21,6 +21,7 @@ This is a reference list, **not a ranking**.
 - **[Video Shotcraft](https://github.com/Vincentwei1021/video-shotcraft):** storyboarding and animated product-shot recipes built around Remotion.
 - **[Motion Skills](https://github.com/iart-ai/motion-skills):** independently installable instructional packs for different types of animation.
 - **[Motion Graphics B-roll](https://github.com/Barty-Bart/motion-graphics):** create visual inserts that match specific moments in spoken footage.
+- **[Motion Graphics Skill Pack](https://github.com/charlie947/motion-graphics-skills):** a separate code-first agent skill pack for typographic animation, branded motion graphics, and product demos; not the same project as Motion Skills or Motion Graphics B-roll.
 - **[GSAP](https://github.com/greensock/GSAP):** a general JavaScript animation library, not a video encoder.
 
 ## 2. Shorts, video cuts, and YouTube
@@ -35,14 +36,15 @@ This is a reference list, **not a ranking**.
 - **[Claude Video Vision](https://github.com/Moh4696/claude-video-vision)** samples local video frames and locally transcribed speech.
 - **[Watch Video Skill](https://github.com/Newuxtreme/watch-video-skill)** combines sampled frames with captions or transcripts for analysis.
 - **[Claude Watch](https://github.com/devinilabs/claude-watch)** creates notes and screenshots from tutorials and lectures.
+- **[Claude Video Watch](https://github.com/bradautomates/claude-video)** provides timestamped video frames and transcripts for compatible coding agents; this is a different repository from Claude Watch.
 - **[Omni Captions Skills](https://github.com/lattifai/omni-captions-skills)** covers caption transcription, translation, and format conversion.
 - **[AutoSubs](https://github.com/tmoroney/auto-subs)** is an application for generating subtitles and interfacing with video editors.
 
-Video analysis from periodic still images can miss short events. Auto-generated subtitles can contain misheard words or incorrectly assigned speakers.
+Even scene-change detection and periodic frame sampling can miss short events; compare important observations against the source video. Auto-generated subtitles can contain misheard words or incorrectly assigned speakers.
 
 ## 4. Full pipelines and supporting skills
 
-- **[OpenMontage](https://github.com/Open-Montage-app/OpenMontage)** describes end-to-end video production pipelines from research and asset gathering to rendered output.
+- **[OpenMontage](https://github.com/calesthio/OpenMontage)** describes end-to-end video production pipelines from research and asset gathering to rendered output.
 - **[Claude Code Video Toolkit](https://github.com/digitalsamba/claude-code-video-toolkit)** supplies production commands, templates, and tools; already in the catalog.
 - **[Superpowers](https://github.com/obra/superpowers)** structures coding tasks and review, not video processing specifically.
 - **[Anthropic Skill Creator](https://github.com/anthropics/skills/tree/main/skills/skill-creator)** helps create and evaluate custom skills; it does not directly render videos.
