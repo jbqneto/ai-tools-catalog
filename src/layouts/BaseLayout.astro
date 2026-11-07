@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { resourceSections } from '../lib/resource-sections';
 const { title = 'AI Tools Catalog', description = 'A useful, community-maintained directory of AI tools. No rankings, just useful links.', structuredData = null } = Astro.props;
 const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : import.meta.env.BASE_URL + '/';
 const canonical = Astro.url.href;
@@ -36,7 +37,6 @@ const canonical = Astro.url.href;
         </a>
         <nav aria-label="Main navigation" class="header-actions">
           <a class="nav-link nav-desktop" href={base}>Explore</a>
-          <a class="nav-link" href={base + 'prompts/'}>Prompts</a>
           <a class="nav-link" href={base + 'for-agents/'}>For AI agents</a>
           <a class="nav-link nav-desktop" href={base + 'browser-games/'}>Games</a>
           <a class="nav-link nav-desktop" href={base + 'contribute/'}>Contribute</a>
@@ -46,11 +46,16 @@ const canonical = Astro.url.href;
           </a>
         </nav>
       </header>
+      <nav class="resource-main-nav container" aria-label="Browse catalog by resource type">
+        <a href={base}>All resources</a>
+        {resourceSections.map(s => <a href={base + s.slug + '/'}>{s.label}</a>)}
+        <a href={base + 'prompts/'}>Prompts &amp; Workflows</a>
+      </nav>
       <main><slot /></main>
       <footer class="site-footer container">
         <div class="footer-brand"><span class="brand-mini">✳</span> AI Tools Catalog</div>
         <p>Made to be useful. Maintained in the open. No rankings, no sponsored placements.</p>
-        <div class="footer-links"><a href={base}>Explore</a><a href={base + 'prompts/'}>Prompts & workflows</a><a href={base + 'browser-games/'}>Browser games</a><a href={base + 'contribute/'}>Contribute</a><a href={base + 'for-agents/'}>For AI agents</a><a href={base + 'api/catalog.json'}>Catalog JSON</a><a href="https://github.com/jbqneto/ai-tools-catalog" target="_blank" rel="noopener noreferrer">Source code ↗</a></div>
+        <div class="footer-links"><a href={base}>All resources</a>{resourceSections.map(s => <a href={base + s.slug + '/'}>{s.label}</a>)}<a href={base + 'prompts/'}>Prompts & workflows</a><a href={base + 'browser-games/'}>Browser games</a><a href={base + 'contribute/'}>Contribute</a><a href={base + 'for-agents/'}>For AI agents</a><a href={base + 'api/catalog.json'}>Catalog JSON</a><a href="https://github.com/jbqneto/ai-tools-catalog" target="_blank" rel="noopener noreferrer">Source code ↗</a></div>
         <small>Tool names and trademarks belong to their respective owners.</small>
       </footer>
     </div>

@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
 import { catalogUrl } from '../lib/agent-catalog';
+import { resourceSections } from '../lib/resource-sections';
 
 function xmlEscape(s: string): string {
   return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
@@ -14,6 +15,7 @@ export const GET: APIRoute = async () => {
     catalogUrl('for-agents/'),
     catalogUrl('contribute/'),
     catalogUrl('prompts/'),
+    ...resourceSections.map(s => catalogUrl(s.slug + '/')),
     catalogUrl('browser-games/'),
     ...tools.map(t => catalogUrl('tools/' + encodeURIComponent(t.id) + '/')),
     ...prompts.map(p => catalogUrl('prompts/' + encodeURIComponent(p.id) + '/')),

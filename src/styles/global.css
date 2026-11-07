@@ -529,3 +529,28 @@ h1,h2,h3{font-family:'Space Grotesk',sans-serif;line-height:1.15;letter-spacing:
 
 /* Agent access page */
 .agent-prompt{white-space:pre-wrap;overflow-wrap:anywhere;max-width:100%;border:1px solid #34405a;border-radius:12px;padding:20px;line-height:1.55;font-size:.83rem;background:#0d1525;overflow-x:auto}
+
+/* Resource-type collections are views over one canonical catalog. */
+.resource-main-nav{display:flex;gap:5px;align-items:center;overflow-x:auto;scrollbar-width:thin;min-height:50px;padding-block:8px;border-bottom:1px solid #283447}
+.resource-main-nav a,.resource-directory-tabs a{flex:0 0 auto;white-space:nowrap;color:#bac9df;font-size:.82rem;font-weight:700;border-radius:8px;padding:8px 13px}
+.resource-main-nav a:hover,.resource-directory-tabs a:hover,.resource-directory-tabs a[aria-current="page"]{color:#fff;background:#212d43}
+.resource-landing{padding-top:55px}
+.resource-landing .section-heading{margin-bottom:24px}
+.resource-overview-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.resource-overview-card{display:flex;flex-direction:column;min-height:210px;border:1px solid #2c3c53;border-radius:15px;padding:24px;background:linear-gradient(145deg,#172034,#111a2b)}
+.resource-overview-card:hover{border-color:#8e89d4}
+.resource-overview-count{font-size:.75rem;font-weight:800;color:#b1aaff}
+.resource-overview-card h3{font-size:1.35rem;margin:15px 0 10px}
+.resource-overview-card p{color:#acb8ca;line-height:1.65;font-size:.87rem;margin:0 0 16px;flex:1}
+.resource-overview-action{color:#b7b0ff;font-size:.78rem;font-weight:800}
+.resource-taxonomy-note,.resource-directory-note{color:#98a7bd;font-size:.83rem;line-height:1.65;margin:20px 0}
+.resource-taxonomy-note a,.resource-directory-note a{color:#c5baff;text-decoration:underline}
+.resource-directory{padding-top:50px;padding-bottom:95px}
+.resource-directory-heading{max-width:840px;margin:55px 0 35px}
+.resource-directory-heading h1{font-size:clamp(2.5rem,5.5vw,4rem);margin:15px 0}
+.resource-directory-heading p{color:#a9b7cc;line-height:1.75;font-size:1.05rem}
+.resource-directory-tabs{display:flex;gap:5px;flex-wrap:wrap;border-bottom:1px solid #334159;padding-bottom:14px;margin-bottom:22px}
+.resource-directory .directory-meta{padding:22px 0 18px}
+.resource-directory-note{margin-top:28px}
+@media(max-width:950px){.resource-overview-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){.resource-main-nav{width:100%;padding-inline:14px}.resource-main-nav a{font-size:.77rem;padding:8px 11px}.resource-overview-grid{grid-template-columns:1fr}.resource-overview-card{min-height:190px}.resource-directory-heading{margin-top:40px}}

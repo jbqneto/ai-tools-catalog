@@ -2,7 +2,9 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import { catalogUrl } from '../lib/agent-catalog';
+import { resourceSections, inResourceSection } from '../lib/resource-sections';
 const tools = (await getCollection('tools')).sort((a, b) => a.data.name.localeCompare(b.data.name));
+const prompts = await getCollection('prompts');
 const categories = [...new Set(tools.map((tool) => tool.data.category))].sort();
 const resourceTypes = [...new Set(tools.map((tool) => tool.data.resourceType))].sort();
 const aiRelations = [...new Set(tools.map((tool) => tool.data.aiInvolvement))].sort();
@@ -68,14 +70,19 @@ const categorySymbols = {
     </div>
   </section>
 
-  <section class="prompt-promo container" aria-label="Prompts and workflows">
-    <div class="prompt-promo-icon" aria-hidden="true">⌘</div>
-    <div>
-      <span class="overline">NEW COLLECTION</span>
-      <h2>Prompts &amp; workflows</h2>
-      <p>Reusable motion design prompts and practical video-production recipes. Separate from software listings.</p>
+  <section class="resource-landing container" aria-label="Catalog sections">
+    <div class="section-heading"><div><span class="overline">BROWSE BY RESOURCE TYPE</span><h2>Different resources, clearly separated.</h2><p>Find applications, libraries, agent skills, MCP servers or reusable prompt guides.</p></div></div>
+    <div class="resource-overview-grid">
+      {resourceSections.map(section => <a class="resource-overview-card" href={base + section.slug + '/'}>
+        <span class="resource-overview-count">{tools.filter(item => inResourceSection(item.data.resourceType, section)).length} entries</span>
+        <h3>{section.label}</h3><p>{section.description}</p><span class="resource-overview-action">Browse →</span>
+      </a>)}
+      <a class="resource-overview-card" href={base + 'prompts/'}>
+        <span class="resource-overview-count">{prompts.length} references</span><h3>Prompts &amp; Workflows</h3>
+        <p>Creative briefs, reusable prompts and workflow instructions. Not installable tools.</p><span class="resource-overview-action">Browse →</span>
+      </a>
     </div>
-    <a class="secondary-button" href={base + 'prompts/'}>Browse prompts ↗</a>
+    <p class="resource-taxonomy-note">Every item is stored once. Skill collections, MCP registries, and learning resources stay discoverable in <a href="#directory">the full catalog</a>.</p>
   </section>
 
   <section class="catalog-section container" id="directory" aria-label="Tool directory">
