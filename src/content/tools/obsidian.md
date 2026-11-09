@@ -1,7 +1,7 @@
 ---
 name: "Obsidian"
 summary: "A local-first Markdown knowledge-base and note-taking application with backlinks, graphs, and plugins for organizing reference material and agent-produced notes."
-category: "Open Source Apps"
+category: "Learning & Research"
 url: "https://obsidian.md"
 tags: ["Markdown","Knowledge management","Notes","Local-first","Plugins","Documentation"]
 resourceType: "Application"
