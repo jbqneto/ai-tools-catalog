@@ -59,6 +59,27 @@ Privacy, cost, access and scheduling constraints: [CONSTRAINTS]
 Never install anything, publish data, or execute external actions without approval.
 ```
 
+## Concrete skills to consider creating
+
+The following are **examples of reusable task instructions**, not verified public repositories or stand-alone products. Do not add them as separate tool records:
+
+- **Morning intelligence:** read permitted feeds and authorized data sources, deduplicate items, record source URLs and dates, and generate a concise morning digest. Any external publishing requires approval.
+- **Content cascade:** repurpose an approved long-form script or transcript into Short concepts and platform-specific post drafts while preserving editorial review and source provenance.
+- **Community Q&A digest:** cluster recurring questions from authorized community channels, propose FAQ updates and draft replies, but never post automatically without authorization.
+
+Each skill should define its trigger, input schema, authorized sources, deterministic outputs, error handling, rate limits, review gates and evaluation criteria. A scheduler or message queue triggers the execution; a skill does not continuously run by itself.
+
+## Suggested Markdown workspace layout
+
+```text
+knowledge/
+  raw/           # captured sources and unprocessed research
+  wiki/          # verified notes, reusable procedures and decisions
+  outputs/       # reviewed reports and agent deliverables
+```
+
+Keep code, projects and their original docs in their canonical repositories rather than duplicating them into a note vault.
+
 ## Related software (separate catalog entries)
 
 - [faster-whisper](https://github.com/SYSTRAN/faster-whisper) — STT.
