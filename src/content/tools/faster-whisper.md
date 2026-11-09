@@ -1,44 +1,36 @@
 ---
 name: "faster-whisper"
-summary: "A CTranslate2-based implementation of Whisper speech-to-text inference with CPU and GPU support, quantization, timestamps, and voice activity detection."
+summary: "A CTranslate2-based Python implementation of Whisper speech recognition with efficient CPU and GPU inference and configurable quantization."
 category: "Media & Creative"
 url: "https://github.com/SYSTRAN/faster-whisper"
 repository: "https://github.com/SYSTRAN/faster-whisper"
-tags: ["Speech recognition","Transcription","Whisper","Python","CTranslate2","Subtitles"]
+tags: ["Speech recognition","Transcription","Whisper","Python","CTranslate2","Offline AI"]
 resourceType: "Library / Framework"
 aiInvolvement: "Core AI"
 verification: "confirmed"
 aliases: ["SYSTRAN faster-whisper"]
-useCases: ["Transcribe spoken narration into timed segments or subtitles","Build automated audiovisual quality checks and transcript search","Compare local CPU and GPU transcription backends for production workflows"]
-capabilities: ["Whisper-based transcription via CTranslate2 inference","Optional word timestamps, voice-activity detection and batched transcription","CPU and supported NVIDIA GPU execution with selectable compute precision"]
-requirements: ["Python 3.9 or newer and appropriate model files","Memory, compute, and optional supported CUDA/cuDNN libraries for GPU","Language-appropriate testing and correction for publishable subtitles"]
-limitations: ["Model transcriptions can hallucinate or misrecognize names, especially in low-quality audio and music","Benchmark speedups depend on hardware, model size, batch settings and precision","Speech recognition does not generate voices; use a separate TTS system"]
+useCases: ["Transcribe local narration for subtitle alignment","Extract speech from recorded tutorials or interviews","Evaluate on-premises batch transcription for a content-production pipeline"]
+capabilities: ["Whisper-model transcription on CPU and compatible GPUs","INT8 quantization and optional batched inference","Word timestamps and voice activity detection integrations"]
+requirements: ["Python 3.9+ and an appropriate CTranslate2-compatible environment","A downloaded compatible speech-recognition model and sufficient RAM or VRAM","CUDA and cuDNN versions compatible with the installed runtime for NVIDIA GPU use"]
+limitations: ["Transcription accuracy varies with language, audio quality and selected model","Benchmark gains are workload-dependent and are not guaranteed for every device","Whisper transcription does not synthesize speech; pair with a separate TTS engine for voice output"]
 ---
 
+## What it does
 
-## Overview
+[faster-whisper](https://github.com/SYSTRAN/faster-whisper) implements OpenAI Whisper model inference using [CTranslate2](https://github.com/OpenNMT/CTranslate2/). It supports CPU/GPU inference, reduced-precision operation and batched transcription. Audio decoding uses PyAV and does not require a separate FFmpeg executable in the standard Python package.
 
-[faster-whisper](https://github.com/SYSTRAN/faster-whisper) is a Python implementation of Whisper inference using CTranslate2. It supports local transcription on CPU and supported GPUs, quantized inference, timestamped segments, voice-activity detection and batched processing.
+## Useful workflows
 
-## Typical use cases
+- Generate local transcripts for subtitles and content review.
+- Convert recorded audio into searchable text.
+- Run repeatable voice-to-text steps before sending a transcript to an agent.
 
-- Build subtitles and captions for recorded speech.
-- Transcribe voiceovers for searchable archives, automated editing or QA.
-- Run local speech-to-text in processing pipelines without a mandatory hosted transcription API.
+## Not a voice assistant by itself
 
-## Relation to Kokoro, Moonshine, and VoiceStudio
+This is an **STT inference library**, not a chat UI, agent architecture or text-to-speech engine. To implement a voice assistant, combine transcription, your chosen model endpoint, and TTS; preserve privacy boundaries when submitting transcripts to a remote LLM.
 
-- **faster-whisper:** speech-to-text (**STT**), based on Whisper models.
-- **Kokoro ONNX:** text-to-speech (**TTS**); generates speech rather than transcribing it.
-- **Moonshine Voice:** a separate low-latency speech toolkit already in this catalog.
-- **VoiceStudio:** a separate creator-oriented voice application already in this catalog.
+## License and performance
 
-These are distinct repositories, not duplicates of one another.
-
-## Operational notes
-
-Python 3.9+ is required. The project uses PyAV for media decoding, so an independently installed FFmpeg executable is not normally required for its basic transcription function. GPU inference has CUDA/cuDNN compatibility requirements. Speed benchmarks in the README are environment-specific and should not be treated as guaranteed gains.
-
-The repository is **MIT licensed**; review model weights and upstream licenses separately.
+The repository is **MIT licensed**. The project publishes performance benchmarks, but speed, memory, and accuracy depend on device, batch size, CUDA/CTranslate2 configuration and model. Confirm the license of any separately downloaded model.
 
 **Official source:** [SYSTRAN/faster-whisper](https://github.com/SYSTRAN/faster-whisper).

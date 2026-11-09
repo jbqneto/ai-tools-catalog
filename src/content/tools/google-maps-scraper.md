@@ -1,43 +1,34 @@
 ---
 name: "Google Maps Scraper (gosom)"
-summary: "Open-source Go-based Google Maps scraping software with a command-line interface, self-hosted web UI, REST API, and an optional Agent Skill."
+summary: "An open-source Go scraper with CLI, Web UI, REST API, and an optional coding-agent skill for researching Google Maps business listings."
 category: "Web & Monitoring"
 url: "https://github.com/gosom/google-maps-scraper"
 repository: "https://github.com/gosom/google-maps-scraper"
-tags: ["Local business research","Web scraping","Go","CLI","REST API","Agent Skill"]
+tags: ["Google Maps","Business research","Scraping","Go","CLI","Agent Skill"]
 resourceType: "CLI / Developer Tool"
 aiInvolvement: "Optional AI"
 verification: "confirmed"
-aliases: ["gosom/google-maps-scraper","Google Maps Scraper"]
-useCases: ["Research publicly listed local businesses where collection is permitted","Explore an agent-assisted lead discovery workflow using an isolated small test","Assess programmatic export, review, and deduplication of business records"]
-capabilities: ["Go CLI, optional browser UI and local REST API for scraping jobs","Structured CSV or JSON output for available business fields","Optional agent skill for guiding search and local execution"]
-requirements: ["Go executable or a supported container runtime for the core scraper","Node.js and Docker for the documented agent-skill workflow","Review of Google Maps terms, GDPR and collection rights before use"]
-limitations: ["Google Maps Platform terms in the EEA expressly restrict extracting or scraping Maps Content for use outside the services; an MIT license does not override upstream rights","Automated collection can trigger blocking, incomplete output, and privacy or data-protection obligations","Leads are not verified business relationships; public emails must not be treated as marketing consent"]
+aliases: ["gosom/google-maps-scraper","gosom Google Maps Scraper"]
+useCases: ["Evaluate public local-business information for a permitted research task","Prototype a locally executed, controlled data-extraction workflow","Explore how a coding-agent skill orchestrates a CLI without duplicating its underlying repository"]
+capabilities: ["Command-line application, local Web UI and HTTP API","Configurable structured output for business listing fields","Optional agent skill at skills/google-maps-scraper for planning and running jobs"]
+requirements: ["Docker for the documented container workflow; Node.js for the optional skill installer","Clear legal rights and a lawful basis for the intended access and data processing","Rate limits, data minimization and evaluation of Google Maps service terms"]
+limitations: ["Google Maps Platform terms prohibit extraction, scraping or storage of Maps content outside authorized services; an MIT repo license does not override these terms","Email addresses and business details may be missing, inaccurate or personal data regulated by privacy law","Automated collection can trigger blocking, account restrictions, legal or contractual risks; do not assume permission"]
 ---
 
+## What it does
 
-## Overview
+[Google Maps Scraper](https://github.com/gosom/google-maps-scraper) is a Go-based utility for collecting business-listing fields with a CLI, Web UI and REST API. The public repository also includes an [Agent Skill](https://github.com/gosom/google-maps-scraper/tree/main/skills/google-maps-scraper) for supported coding agents. **The skill is a companion to this same project, not a separate catalog record.**
 
-[Google Maps Scraper](https://github.com/gosom/google-maps-scraper) is an open-source Go project for extracting business listing information, with a CLI, optional web interface and REST API. The repository also contains an **Agent Skill** that guides compatible AI coding agents through configuring a local collection job.
+## Practical applications
 
-**This record describes one tool with an optional skill, not two independent products.** It should not be added again under a second name simply because a screenshot shows the skill installation command.
+- Study architecture patterns for CLI-based and agent-orchestrated data workflows.
+- Evaluate whether a permitted local-business research task could be automated responsibly.
+- Inspect structured-data export, validation and resumable processing patterns.
 
-## Useful for
+## Compliance and limitations
 
-- Evaluating business discovery and data-enrichment workflows.
-- Testing what a local scraping tool can output in CSV or JSON.
-- Exploring an agent-assisted workflow with controlled scope and manual approval.
+**Open-source code does not grant permission to scrape third-party services.** Google Maps Platform's [EEA terms](https://cloud.google.com/terms/maps-platform/eea) explicitly prohibit exporting, extracting or otherwise scraping Maps content for use outside the services, including saving business names, addresses and reviews. The exact restrictions depend on the access method and applicable contract. Review the relevant Maps terms, robots and privacy requirements before use. Avoid collecting personal contact details without a lawful basis.
 
-## Requirements and cautions
+The repository is **MIT licensed**, but this governs the software itself—not Google's data. Use official approved APIs or directly licensed/permissioned datasets where appropriate. Do not assume the advertised extraction speed, coverage or lead quality applies to your use case.
 
-- The core CLI can be built or run using the project's documented binaries or container approach.
-- The optional Agent Skill uses the documented `npx skills add gosom/google-maps-scraper` flow, and expects Docker and Node.js in its supported setup.
-- **Important legal and contractual caution:** Google Maps Platform EEA Terms specifically prohibit scraping or exporting Google Maps Content outside the services, including bulk downloads and saved names, addresses, or reviews. Other Google product terms may also apply. Evaluate authorization and permitted alternatives before collecting data, especially for commercial use: [Google Maps Platform EEA Terms](https://cloud.google.com/terms/maps-platform/eea).
-- Contact details and other personal information may require a GDPR legal basis; a public listing does **not** automatically authorize marketing outreach.
-- Any scripts, network access, cookies and proxy configuration should be reviewed before execution. Open-source licensing covers the scraper's code, not ownership of the scraped content.
-
-## AI classification and license
-
-The scraper works **without an LLM**. AI assistance is optional, so the AI involvement is **Optional AI**, not Core AI and not an MCP server. The software repository is **MIT licensed**.
-
-**Primary source:** [gosom/google-maps-scraper](https://github.com/gosom/google-maps-scraper).
+**Official sources:** [Project repository](https://github.com/gosom/google-maps-scraper), [EEA Maps terms](https://cloud.google.com/terms/maps-platform/eea).

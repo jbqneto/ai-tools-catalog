@@ -1,40 +1,33 @@
 ---
 name: "Obsidian"
-summary: "A local-first Markdown knowledge-management application for linked notes and project documentation that can support, but does not itself provide, an AI agent memory system."
-category: "Learning & Research"
-url: "https://obsidian.md/"
-tags: ["Markdown","Knowledge management","Local first","Notes","Documentation","Agent context"]
+summary: "A local-first Markdown knowledge-base and note-taking application with backlinks, graphs, and plugins for organizing reference material and agent-produced notes."
+category: "Open Source Apps"
+url: "https://obsidian.md"
+tags: ["Markdown","Knowledge management","Notes","Local-first","Plugins","Documentation"]
 resourceType: "Application"
 aiInvolvement: "No AI required"
 verification: "confirmed"
 aliases: ["Obsidian Notes"]
-useCases: ["Organize project research, decisions and documentation in local Markdown files","Keep a human-readable source of context that can be shared with authorized agents","Build a private wiki with linked notes and manually curated working knowledge"]
-capabilities: ["Local plain-text Markdown vaults and linked documents","Graph and search views, plugins and theme customization","Optional paid sync and publishing services"]
-requirements: ["Desktop or mobile application and a local Markdown vault","Explicit permission and file-access tooling for AI assistants to retrieve notes","Backups and access controls for private or sensitive documents"]
-limitations: ["Proprietary application; a public GitHub releases repository is not its source code","Neither long-term agent memory nor automatic RAG retrieval is included merely by installing Obsidian","Cloud sync, community plugins and AI integrations have separate privacy and security implications"]
+useCases: ["Maintain a human-editable Markdown vault of technical decisions and reports","Organize research notes with links and reusable templates","Share selected workspace notes with a coding agent through a controlled filesystem boundary"]
+capabilities: ["Markdown notes stored as ordinary local files","Backlinks, search and graph-based navigation","Community plugins and optional paid synchronization"]
+requirements: ["Desktop or mobile application and a Markdown vault","A deliberate backup and sync strategy","Permission boundaries when agents can read or modify vault files"]
+limitations: ["Obsidian is proprietary software, not open-source, despite the public plugin/release repository","AI features require separate extensions or integrations; no AI is required for core note-taking","Local files can still be sent to remote AI models or sync services depending on integrations and settings"]
 ---
 
+## What it does
 
-## Overview
+[Obsidian](https://obsidian.md) is a local-first Markdown notes application. A vault is a directory of Markdown files that may also include images and attachments. Backlinks, graph views and optional extensions make it useful for maintaining research, decisions and recurring project documentation.
 
-[Obsidian](https://obsidian.md/) is a local-first application for creating linked Markdown notes. It can be useful as a personal or team reference library for decisions, procedures, source material and research.
+## Useful workflows
 
-## Useful for AI-assisted workflows
+- Keep a structured `raw/`, `wiki/`, and `outputs/` set of directories for captured inputs, synthesized notes and agent deliverables.
+- Maintain project documentation that is readable both by people and coding agents with filesystem access.
+- Use templates and backlinks for a searchable knowledge base without building a database-backed CMS.
 
-- Store approved project notes and decisions in Markdown format.
-- Maintain a `raw/`, `wiki/`, and `outputs/` folder convention if it matches the team's needs.
-- Let compatible agents read specifically authorized vault files or an indexed export.
+## Important classifications and cautions
 
-**An Obsidian vault is not automatically agent memory.** Agent-side retrieval, permissions, indexing, synchronization and change tracking must be designed or configured separately. An agent should not silently treat every saved note as authoritative.
+Obsidian **is not an AI application by default and is not open-source software**. Its [public releases repository](https://github.com/obsidianmd/obsidian-releases) contains releases, plugins and community-theme indices—not Obsidian source code. AI integrations are optional and should be evaluated separately.
 
-## AI and license classification
+A local Markdown vault does not automatically make an agent's workflow private: agent permissions, any remote LLM calls, cloud sync and plugins are independent considerations. Use backups, read-only access where possible and avoid writing secrets into shared notes.
 
-Obsidian itself does **not require AI** and is **not open-source software**. Its application code is proprietary, even though many community plugins and its public [release repository](https://github.com/obsidianmd/obsidian-releases) are visible.
-
-According to the [official license overview](https://obsidian.md/license), Obsidian is free for personal, non-profit **and commercial** use; paid Sync, Publish, and supporter licenses are optional. Check their current terms for your chosen setup.
-
-## Related catalog resources
-
-Consider pairing a Markdown vault with version control and an appropriately permissioned retrieval/indexing workflow. Keep confidential information out of public repositories, and review plugins before providing agents with access.
-
-**Official sources:** [Obsidian](https://obsidian.md/) · [License](https://obsidian.md/license).
+**Official sources:** [Obsidian](https://obsidian.md), [project release repository](https://github.com/obsidianmd/obsidian-releases).

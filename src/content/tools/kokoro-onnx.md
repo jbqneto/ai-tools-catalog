@@ -1,37 +1,36 @@
 ---
 name: "Kokoro ONNX"
-summary: "A Python text-to-speech library running Kokoro voice models through ONNX Runtime locally, with selectable voices, languages, and CPU or GPU execution."
+summary: "A Python wrapper for Kokoro text-to-speech models using ONNX Runtime, supporting local voice synthesis with downloadable model and voice files."
 category: "Media & Creative"
 url: "https://github.com/thewh1teagle/kokoro-onnx"
 repository: "https://github.com/thewh1teagle/kokoro-onnx"
-tags: ["Text to speech","Kokoro","ONNX","Python","Local AI","Narration"]
+tags: ["Text to speech","Kokoro","ONNX Runtime","Python","Local AI","Voice synthesis"]
 resourceType: "Library / Framework"
 aiInvolvement: "Core AI"
 verification: "confirmed"
-aliases: ["kokoro-onnx","thewh1teagle kokoro"]
-useCases: ["Generate synthetic narration locally for video projects","Prototype speaking assistants and accessibility features","Compare on-device TTS voice quality, runtime, and cost"]
-capabilities: ["Text-to-speech synthesis using Kokoro models via ONNX Runtime","Multiple voice choices and supported languages","CPU execution with optional hardware acceleration and model variants"]
-requirements: ["Python 3.10 or newer and an appropriate ONNX Runtime environment","Compatible Kokoro model and voice asset downloads","Voice and pronunciation testing for the target language"]
-limitations: ["Quality and language support vary by voice and model; do not assume all languages and accents are equally supported","Does not perform speech recognition or conversation orchestration","Respect consent and disclosure when using realistic synthetic voices"]
+aliases: ["kokoro-onnx","Kokoro TTS ONNX"]
+useCases: ["Generate synthetic narration for local prototypes","Add voice replies to a personal assistant using an on-device TTS engine","Evaluate deterministic TTS pipelines for a video-production stack"]
+capabilities: ["Local text-to-speech synthesis using ONNX Runtime","Multiple downloadable voices and multilingual model assets","CPU and supported hardware acceleration options"]
+requirements: ["Python 3.10+ and compatible ONNX Runtime environment","Kokoro ONNX model file and matching voice assets","Memory and audio-processing capacity appropriate to the model"]
+limitations: ["Language, pronunciation and voice quality vary by model, voice and phonemization setup","A TTS engine does not transcribe microphone input or implement a complete voice agent","Disclose synthetic speech when appropriate and respect rights associated with supplied reference voices"]
 ---
 
+## What it does
 
-## Overview
+[Kokoro ONNX](https://github.com/thewh1teagle/kokoro-onnx) enables local text-to-speech from Kokoro models through ONNX Runtime. Its Python examples download separate ONNX model files and voice assets. This is especially useful for prototyping voice responses without paying for every cloud TTS request.
 
-[Kokoro ONNX](https://github.com/thewh1teagle/kokoro-onnx) provides a Python wrapper around Kokoro text-to-speech models using ONNX Runtime, supporting local speech generation with downloadable model and voice files.
+## Useful workflows
 
-## Useful for
+- Turn an assistant's reply into spoken audio.
+- Produce a draft narration or preview a script voice.
+- Combine with an STT engine such as faster-whisper in a modular voice interface.
 
-- Producing narration audio on an existing computer.
-- Building speaking interfaces and voice-based apps.
-- Evaluating TTS voices, pronunciations, and performance independently of cloud API pricing.
+## Architectural limits
 
-## Not the same as faster-whisper
+This is a **TTS inference library**, not an STT model, orchestration framework or standalone video editor. Voices and language coverage vary. Calling a remote language model can still expose text even when recording and TTS are local.
 
-**Kokoro ONNX creates speech from text**. The separate **faster-whisper** project transcribes audio into text. Combining the two can support a local spoken assistant, but they do not create an autonomous agent by themselves; a dialogue model and application logic are additional layers.
+## Licenses
 
-## License and limits
-
-The wrapper repository is **MIT licensed**, while the project's README lists the **Kokoro model as Apache-2.0 licensed**. Review voice assets and dependencies for any additional distribution requirements. Model processing can run locally, but appropriate hardware, downloaded assets, and accent/language evaluation are still necessary.
+The **kokoro-onnx wrapper is MIT licensed**; the official README identifies the **Kokoro model as Apache-2.0**. Verify the specific model, downloaded voice assets and dependencies before commercial use.
 
 **Official source:** [thewh1teagle/kokoro-onnx](https://github.com/thewh1teagle/kokoro-onnx).
