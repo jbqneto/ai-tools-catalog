@@ -89,3 +89,17 @@ Keep code, projects and their original docs in their canonical repositories rath
 - [Moonshine Voice](https://github.com/moonshine-ai/moonshine) — another voice technology, already cataloged; evaluate overlap before adding it to a stack.
 
 This is a non-ranked reference, not a claim that one combined stack replaces production security, observability or maintenance.
+
+## Optional Markdown vault convention
+
+If a dedicated workspace vault is genuinely needed, a simple convention is:
+
+```text
+knowledge/
+  raw/           # captured source material and references
+  wiki/          # reviewed ideas, stable decisions and runbooks
+  outputs/       # reviewed agent deliverables
+  skills/        # owned skills or links to canonical skill sources
+```
+
+Do not duplicate existing project documentation into a second vault by default: maintain one canonical source of truth. Set explicit read/write permissions per agent and back up notes before introducing write-capable automation. Local STT/TTS does not imply a fully local agent: text sent to a remote LLM still leaves the device. Obsidian is proprietary; its public GitHub releases repository is not its application source code.
