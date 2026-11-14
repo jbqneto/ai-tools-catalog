@@ -13,6 +13,6 @@
     "postbuild": "npm run validate:agent-feed"
   },
   "dependencies": {
-    "astro": "^7.4.0"
+    "astro": "^7.4.7"
   }
 }
